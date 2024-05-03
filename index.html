@@ -1,90 +1,151 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Contact Form #1</title>
-  </head>
-  <body>
-  
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
 
-  <div class="content">
-    
-    <div class="container">
+  <link href="w3.css" type="text/css" rel="stylesheet" />
 
-      
-      <div class="row justify-content-center">
-        <div class="col-md-10">
-          
-          <div class="row align-items-center">
-            <div class="col-lg-7 mb-5 mb-lg-0">
+  <title>Contact Form #1</title>
+</head>
+<body>
 
-              <h2 class="mb-5">Fill the form. <br> It's easy.</h2>
 
-              <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First name">
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name">
-                  </div>
+<div class="content">
+
+  <div class="container">
+
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+
+        <div class="row align-items-center">
+          <div class="col-lg-7 mb-5 mb-lg-0">
+
+            <h2 class="mb-5">Student Dismissal Form.</h2>
+
+            <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
+              <p>Student Name:</p>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" name="fname" id="fname" placeholder="First name">
                 </div>
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-                  </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name">
                 </div>
-
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <textarea class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Write your message"></textarea>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="submit" value="Send Message" class="btn btn-primary rounded-0 py-2 px-4">
-                    <span class="submitting"></span>
-                  </div>
-                </div>
-              </form>
-
-              <div id="form-message-warning mt-4"></div> 
-              <div id="form-message-success">
-                Your message was sent, thank you!
               </div>
+              <div class="row">
 
+                <!-- Add signature pad here-->
+                <div class="w3-container">
+                  <p>Signature:</p><br>
+                  <div id="signature-pad" class="m-signature-pad w3-dashed">
+                    <div class="m-signature-pad--body">
+                      <canvas></canvas>
+                      <input type="hidden" name="signature" id="signature" value="">
+                    </div>
+                  </div>
+
+                  <button type="button" class="w3-btn w3-black" onclick="signaturePad.clear();">Clear</button>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="submit" value="Submit" onclick="download('sig.png');" class="btn btn-primary rounded-0 py-2 px-4">
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+
+            <div id="form-message-warning mt-4"></div>
+            <div id="form-message-success">
+              Your message was sent, thank you!
             </div>
-            <div class="col-lg-4 ml-auto">
-              <h3 class="mb-4">Let's talk about everything.</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
-              <p><a href="#">Read more</a></p>
-            </div>
+
           </div>
-        </div>  
+          <div class="col-lg-4 ml-auto">
+            <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
+            <p>Submitting this form hold you solely responsible for for the student you are signing out. </p>
+            <p><a href="#">Read more</a></p>
+          </div>
         </div>
       </div>
+    </div>
   </div>
-    
-    
+</div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
+<script src="signature_pad.js"></script>
+<script type="text/javascript"></script>
+<script src="signature_pad.js"></script>
+<script type="text/javascript">
+  var wrapper = document.getElementById("signature-pad"),
+          canvas = wrapper.querySelector("canvas"),
+          signaturePad;
+
+  function download(filename) {
+    var blob = dataURLToBlob(signaturePad.toDataURL());
+    var url = window.URL.createObjectURL(blob);
+
+    var a = document.createElement("a");
+    a.style = "display: none";
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  /**
+   * DataURL in Binär umwandeln
+   */
+  function dataURLToBlob(dataURL) {
+    // Code von https://github.com/ebidel/filer.js
+    var parts = dataURL.split(';base64,');
+    var contentType = parts[0].split(":")[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], { type: contentType });
+  }
+
+  function submitForm() {
+    document.getElementById('signature').value = signaturePad.toDataURL();
+  }
+
+
+  var signaturePad = new SignaturePad(canvas);
+  signaturePad.minWidth = 1; //minimale Breite des Stiftes
+  signaturePad.maxWidth = 1; //maximale Breite des Stiftes
+  signaturePad.penColor = "#21409A"; //Stiftfarbe
+
+</script>
+</body>
 </html>
+
