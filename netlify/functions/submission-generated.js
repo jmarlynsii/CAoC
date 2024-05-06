@@ -1,39 +1,45 @@
-const sendGridMail = require("@sendgrid/mail");
+const client = require("@sendgrid/mail")
 
-const handler = async (event) => {
-  try {
-    const { name, email, message } = JSON.parse(event.body).payload.data;
+function sendEmail(client, message, senderEmail, senderName) {
+    return new Promise((fulfill, reject) => {
+        const data = {
+            from: {
+                email: senderEmail,
+                name: senderName
+            },
+            subject: 'SendGrid Form',
+            to: 'jameciamarlynsia@gmail.com',
+            html: `New form submission<br/> ${message}`
 
-    console.log(`name: ${name}, email: ${email}, message: ${message}`);
+        }
 
-    sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const html = `
-      <div> 
-         Hi ${name}! <br><br>
-         Thanks for getting in touch.
-         We have received your message
-         and one of our customer care
-         representatives will get in
-         touch shortly
-         <br><br>
-         Best <br>
-         John Doe
-      </div>
-    `;
-    const mail = {
-      from: process.env.SENDER_EMAIL,
-      to: email,
-      subject: "We have received your message",
-      html,
-    };
-    await sendGridMail.send(mail);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Email sent" }),
-    };
-  } catch (error) {
-    return { statusCode: 422, body: String(error) };
-  }
-};
+        client
+            .send(data)
+            .then(([response, body]) => {
+                fulfill(response)
+            })
+            .catch(error => reject(error))
+    })
+}
 
-module.exports = { handler }
+exports.handler = function(event, context, callback) {
+    const {
+        SENDGRID_API_KEY,
+        SENDGRID_SENDER_EMAIL,
+        SENDGRID_SENDER_NAME
+    } = process.env
+
+    const body = JSON.parse(event.body)
+    const message = body.message
+
+    client.setApiKey(SENDGRID_API_KEY)
+
+    sendEmail(
+        client,
+        message,
+        SENDGRID_SENDER_EMAIL,
+        SENDGRID_SENDER_NAME
+    )
+    .then(response => callback(null, { statusCode: response.statusCode }))
+    .catch(err => callback(err, null))
+}

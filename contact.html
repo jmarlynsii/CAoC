@@ -4,57 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            margin-top: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        textarea {
-            height: 150px;
-        }
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            padding: 15px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <!-- Any additional CSS styles can be added here -->
 </head>
 <body>
     <div class="container">
@@ -66,24 +16,27 @@
             <input type="email" id="email" name="email" required>
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
+            <!-- Hidden input field to include sender email -->
+            <input type="hidden" id="senderEmail" name="senderEmail" value="your_email@example.com">
+            <!-- Hidden input field to include sender name -->
+            <input type="hidden" id="senderName" name="senderName" value="Your Name">
             <input type="submit" value="Submit">
         </form>
     </div>
 
+    <!-- JavaScript to handle form submission -->
     <script>
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(this);
             const payload = {
-                data: {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    message: formData.get('message')
-                }
+                message: formData.get('message'),
+                senderEmail: formData.get('senderEmail'),
+                senderName: formData.get('senderName')
             };
             fetch('/.netlify/functions/submission-generated', {
                 method: 'POST',
-                body: JSON.stringify({ payload }),
+                body: JSON.stringify(payload),
                 headers: {
                     'Content-Type': 'application/json'
                 }
