@@ -1,11 +1,11 @@
 {
-    "name": "Submission-generated",
+    "name": "netlify-CAoC",
     "version": "1.0.0",
-    "description": "A project generated for submission",
+    "description": "A site for Student Sign in and dismissal",
     "author": "Jamecia Moore",
-    "license": "MIT",
+    "license": "ISC",
     "dependencies": {
-        "express": "^4.17.1",
-        "sendgrid": "^7.4.5"
+      "@sendgrid/mail": "^7.4.0"
     }
-}
+  }
+  
