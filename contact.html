@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+</head>
+<body>
+
+<h1>Contact Form</h1>
+
+<form id="contact-form" method="POST">
+  <input type="email" name="recipientEmail" placeholder="Recipient's Email" required>
+  <input type="text" name="name" placeholder="Your Name" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
+
+    const recipientEmail = formObject.recipientEmail;
+
+    try {
+      const response = await fetch('/.netlify/functions/sendEmail', {
+        method: 'POST',
+        body: JSON.stringify({ ...formObject, recipientEmail }),
+      });
+      const data = await response.json();
+      console.log(data);
+      alert('Message sent successfully!');
+      // Optionally, redirect the user to a thank you page or clear the form fields
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('An error occurred. Please try again later.');
+    }
+  });
+</script>
+
+</body>
+</html>
