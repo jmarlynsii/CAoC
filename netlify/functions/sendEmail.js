@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   const msg = {
-    to: recipientEmail,
+    to: 'jameciamarlynsia@gmail.com',
     from: 'jameciamoore16@gmail.com', // Replace with your verified sender
     subject: 'New Message from Your Website',
     text: `You have received a new message from ${name} (${email}):\n\n${message}`,
