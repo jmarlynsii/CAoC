@@ -29,7 +29,7 @@
     const recipientEmail = formObject.recipientEmail;
 
     try {
-      const response = await fetch('/.netlify/functions/sendEmail.js', {
+      const response = await fetch('/.netlify/functions/sendEmail', {
         method: 'POST',
         body: JSON.stringify({ ...formObject, recipientEmail }),
       });
