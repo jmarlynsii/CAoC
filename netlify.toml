@@ -1,10 +1,6 @@
 [[plugins]]
   package = "@netlify/plugin-emails"
 
-[build]
-  publish = "dist"
-  functions = './functions/'
-  
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
