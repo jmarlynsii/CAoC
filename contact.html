@@ -29,7 +29,7 @@
     const recipientEmail = formObject.recipientEmail;
 
     try {
-      const response = await fetch('/.netlify/functions/sendEmail.js', {
+      const response = await fetch('/.netlify/functions/sendEmail.jss', {
         method: 'POST',
         body: JSON.stringify({ ...formObject, recipientEmail }),
       });
@@ -39,7 +39,7 @@
       // Optionally, redirect the user to a thank you page or clear the form fields
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('An error occurred. Please try again later.');
+      alert('An error occurred. Pleasze try again later.');
     }
   });
 </script>
