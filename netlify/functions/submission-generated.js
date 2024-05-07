@@ -1,17 +1,17 @@
 const client = require("@sendgrid/mail")
 
 function sendEmail(client, message, senderEmail, senderName, recipientEmail) {
-  return new Promise((fulfill, reject) => {
-      const data = {
-          from: {
-              email: senderEmail,
-              name: senderName
-          },
-          subject: 'SendGrid Form',
-          to: recipientEmail,
-          html: `New form submission<br/> ${message}`
-      };
+    return new Promise((fulfill, reject) => {
+        const data = {
+            from: {
+                email: senderEmail,
+                name: senderName
+            },
+            subject: 'SendGrid Form',
+            to: 'jameciamarlynsia@gmail.com',
+            html: `New form submission<br/> ${message}`
 
+        }
 
         client
             .send(data)
