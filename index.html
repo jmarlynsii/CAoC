@@ -121,7 +121,8 @@ function getContentInPDF() {
                 senderEmail: document.getElementById('senderEmail').value,
                 senderName: document.getElementById('senderName').value,
                 email: 'jameciamarlynsia@gmail.com',
-                pdfData: base64data
+                pdfData: base64data,
+                filename: filename // Include the filename in the payload
             };
             // Send payload via fetch
             fetch('/.netlify/functions/submission-form', {
@@ -129,13 +130,6 @@ function getContentInPDF() {
                 body: JSON.stringify(payload),
                 headers: {
                     'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to send submission.');
                 }
             })
             .then(data => {
@@ -149,6 +143,7 @@ function getContentInPDF() {
         };
     });
 }
+
 
 // Function to get current date in MM-DD-YYYY format
 function getCurrentDate() {
