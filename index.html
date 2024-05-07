@@ -1,93 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
 
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
 
-  <!-- Style -->
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css" />
 
-  <link href="w3.css" type="text/css" rel="stylesheet" />
+    <link href="w3.css" type="text/css" rel="stylesheet" />
 
-  <title>Contact Form #1</title>
+    <!-- Required Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <title>Contact Form #1</title>
 </head>
 <body>
-
-
 <div class="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-5 mb-lg-0">
+                        <h2 class="mb-5">Student Dismissal Form.</h2>
 
-  <div class="container">
+                        <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
+                            <p>Student Name:</p>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First name" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Add signature pad here-->
+                                <div class="w3-container">
+                                    <p>Signature:</p>
+                                    <br />
+                                    <div id="signature-pad" class="m-signature-pad w3-dashed">
+                                        <div class="m-signature-pad--body">
+                                            <canvas id="signature-canvas" width="300" height="200"></canvas> <!-- Set width and height -->
+                                            <input type="hidden" name="signature" id="signature" value="" />
+                                        </div>
+                                    </div>
 
+                                    <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
+                                    <span class="submitting"></span>
+                                </div>
+                            </div>
+                        </form>
 
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-
-        <div class="row align-items-center">
-          <div class="col-lg-7 mb-5 mb-lg-0">
-
-            <h2 class="mb-5">Student Dismissal Form.</h2>
-
-            <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
-              <p>Student Name:</p>
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" class="form-control" name="fname" id="fname" placeholder="First name">
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name">
-                </div>
-              </div>
-              <div class="row">
-
-                <!-- Add signature pad here-->
-                <div class="w3-container">
-                  <p>Signature:</p><br>
-                  <div id="signature-pad" class="m-signature-pad w3-dashed">
-                    <div class="m-signature-pad--body">
-                      <canvas></canvas>
-                      <input type="hidden" name="signature" id="signature" value="">
+                        <div id="form-message-warning mt-4"></div>
+                        <div id="form-message-success">
+                            Your message was sent, thank you!
+                        </div>
                     </div>
-                  </div>
-
-                  <button type="button" class="w3-btn w3-black" onclick="signaturePad.clear();">Clear</button>
+                    <div class="col-lg-4 ml-auto">
+                        <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
+                        <p>Submitting this form hold you solely responsible for for the student you are signing out.</p>
+                        <p><a href="#">Read more</a></p>
+                    </div>
                 </div>
-
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="submit" value="Submit" onclick="download('sig.png');" class="btn btn-primary rounded-0 py-2 px-4">
-                  <span class="submitting"></span>
-                </div>
-              </div>
-            </form>
-
-            <div id="form-message-warning mt-4"></div>
-            <div id="form-message-success">
-              Your message was sent, thank you!
             </div>
-
-          </div>
-          <div class="col-lg-4 ml-auto">
-            <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
-            <p>Submitting this form hold you solely responsible for for the student you are signing out. </p>
-            <p><a href="#">Read more</a></p>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
+<script>
+    function getContentInPDF() {
+        // Access form elements
+        let name = document.getElementById("fname").value;
+        let comment = document.getElementById("lname").value;
+        let signatureDataURL = signaturePad.toDataURL(); // Get signature as data URL
 
+        // Create a single HTML element by adding form data and signature
+        let element = document.createElement("div");
+        element.innerHTML =
+            "<h1>Child sign in/out form</h1>" +
+            "<p>Name: " +
+            name +
+            "</p>" +
+            "<p>Comment: " +
+            comment +
+            "</p>" +
+            '<img src="' +
+            signatureDataURL +
+            '" />'; // Add signature as image
+
+        // Create a new PDF using the form element
+        html2pdf().from(element).save();
+    }
+
+    // Function to clear signature
+    function clearSignature() {
+        signaturePad.clear();
+    }
+</script>
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -95,57 +118,19 @@
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/main.js"></script>
 <script src="signature_pad.js"></script>
-<script type="text/javascript"></script>
-<script src="signature_pad.js"></script>
 <script type="text/javascript">
-  var wrapper = document.getElementById("signature-pad"),
-          canvas = wrapper.querySelector("canvas"),
-          signaturePad;
+    var signaturePad;
 
-  function download(filename) {
-    var blob = dataURLToBlob(signaturePad.toDataURL());
-    var url = window.URL.createObjectURL(blob);
+    // Initialize signaturePad after the page is fully loaded
+    window.addEventListener("DOMContentLoaded", function () {
+        var wrapper = document.getElementById("signature-pad");
+        var canvas = wrapper.querySelector("canvas");
 
-    var a = document.createElement("a");
-    a.style = "display: none";
-    a.href = url;
-    a.download = filename;
-
-    document.body.appendChild(a);
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-  }
-
-  /**
-   * DataURL in Binär umwandeln
-   */
-  function dataURLToBlob(dataURL) {
-    // Code von https://github.com/ebidel/filer.js
-    var parts = dataURL.split(';base64,');
-    var contentType = parts[0].split(":")[1];
-    var raw = window.atob(parts[1]);
-    var rawLength = raw.length;
-    var uInt8Array = new Uint8Array(rawLength);
-
-    for (var i = 0; i < rawLength; ++i) {
-      uInt8Array[i] = raw.charCodeAt(i);
-    }
-
-    return new Blob([uInt8Array], { type: contentType });
-  }
-
-  function submitForm() {
-    document.getElementById('signature').value = signaturePad.toDataURL();
-  }
-
-
-  var signaturePad = new SignaturePad(canvas);
-  signaturePad.minWidth = 1; //minimale Breite des Stiftes
-  signaturePad.maxWidth = 1; //maximale Breite des Stiftes
-  signaturePad.penColor = "#21409A"; //Stiftfarbe
-
+        signaturePad = new SignaturePad(canvas);
+        signaturePad.minWidth = 1;
+        signaturePad.maxWidth = 1;
+        signaturePad.penColor = "#21409A";
+    });
 </script>
 </body>
 </html>
-

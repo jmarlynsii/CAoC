@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+  
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+  
+    <link href="w3.css" type="text/css" rel="stylesheet" />
+  
+<head>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+      </script>
+</head>
+ 
+<body>
+    <h3>Test</h3>
+    <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name"
+               name="name"><br><br>
+ 
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment"
+               name="comment"><br><br>
+
+
+                          <!-- Add signature pad here-->
+                          <div class="w3-container">
+                            <p>Signature:</p><br>
+                            <div id="signature-pad" class="m-signature-pad w3-dashed">
+                              <div class="m-signature-pad--body">
+                                <canvas></canvas>
+                                <input type="hidden" name="signature" id="signature" value="">
+                              </div>
+                            </div>
+          
+                            <button type="button" class="w3-btn w3-black" onclick="signaturePad.clear();">Clear</button>
+                          </div>
+          
+                        </div>
+
+                        <input type="button"
+                        value="Generate PDF"
+                        onclick="getContentInPDF()">
+    </form>
+ 
+    <script>
+        function getContentInPDF() {
+            // Access form elements
+            let name = document.getElementById('name').value;
+            let comment = document.getElementById('comment').value;
+            let signatureDataURL = signaturePad.toDataURL(); // Get signature as data URL
+
+            // Create a single HTML element by adding form data and signature
+            let element = document.createElement('div');
+            element.innerHTML = '<h1>Child sign in/out form</h1>' +
+                '<p>Name: ' + name + '</p>' +
+                '<p>Comment: ' + comment + '</p>' +
+                '<img src="' + signatureDataURL + '" />'; // Add signature as image
+
+            // Create a new PDF using the form element
+            html2pdf().from(element).save();
+        }
+
+    </script>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
+<script src="signature_pad.js"></script>
+<script type="text/javascript"></script>
+<script src="signature_pad.js"></script>
+<script type="text/javascript">
+  var wrapper = document.getElementById("signature-pad"),
+          canvas = wrapper.querySelector("canvas"),
+          signaturePad;
+
+  function download(filename) {
+    var blob = dataURLToBlob(signaturePad.toDataURL());
+    var url = window.URL.createObjectURL(blob);
+
+    var a = document.createElement("a");
+    a.style = "display: none";
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  /**
+   * DataURL in Binär umwandeln
+   */
+  function dataURLToBlob(dataURL) {
+    // Code von https://github.com/ebidel/filer.js
+    var parts = dataURL.split(';base64,');
+    var contentType = parts[0].split(":")[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], { type: contentType });
+  }
+
+  function submitForm() {
+    document.getElementById('signature').value = signaturePad.toDataURL();
+  }
+
+
+  var signaturePad = new SignaturePad(canvas);
+  signaturePad.minWidth = 1; //minimale Breite des Stiftes
+  signaturePad.maxWidth = 1; //maximale Breite des Stiftes
+  signaturePad.penColor = "#21409A"; //Stiftfarbe
+
+</script>
+</body>
+ 
+</html>
