@@ -6,9 +6,9 @@ function sendEmail(client, message, senderEmail, senderName, reEmail) {
             from: {
                 email: senderEmail,
                 name: senderName,
+                to: reEmail
             },
             subject: 'SendGrid Form',
-            to: reEmail,
             html: `New form submission<br/> ${message}`
 
         }
