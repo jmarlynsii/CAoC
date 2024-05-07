@@ -1,15 +1,23 @@
 const client = require("@sendgrid/mail");
 
-function sendEmail(client, message, senderEmail, senderName, email) {
+function sendEmail(client, message, senderEmail, senderName, email, pdfData) {
     return new Promise((fulfill, reject) => {
         const data = {
             from: {
                 email: senderEmail,
                 name: senderName
             },
-            subject: 'SendGrid Form',
-            to: email, // Set the recipient email dynamically
-            html: `New form submission<br/> ${message}`
+            subject: 'New Dismissal Submission Form',
+            to: email,
+            html: `You have received a new submission form for: ${message}`,
+            attachments: [
+                {
+                    content: pdfData.toString('base64'),
+                    filename: 'Dismissal_Form.pdf',
+                    type: 'application/pdf',
+                    disposition: 'attachment'
+                }
+            ]
         };
 
         client
@@ -30,7 +38,8 @@ exports.handler = function(event, context, callback) {
 
     const body = JSON.parse(event.body);
     const message = body.message;
-    const email = body.email; // Retrieve recipient email from the form data
+    const email = body.email;
+    const pdfData = body.pdfData; // Retrieve PDF data from request bodysss
 
     client.setApiKey(SENDGRID_API_KEY);
 
@@ -39,7 +48,8 @@ exports.handler = function(event, context, callback) {
         message,
         SENDGRID_SENDER_EMAIL,
         SENDGRID_SENDER_NAME,
-        email // Pass recipient email to the sendEmail function
+        email,
+        pdfData
     )
     .then(response => callback(null, { statusCode: response.statusCode }))
     .catch(err => callback(err, null));
