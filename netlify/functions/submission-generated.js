@@ -30,7 +30,7 @@ exports.handler = function(event, context, callback) {
 
     const body = JSON.parse(event.body);
     const message = body.message;
-    const recipientEmail = body.reEmail; // Retrieve recipient email from the form data
+    const recipientEmail = body.email; // Retrieve recipient email from the form data
 
     client.setApiKey(SENDGRID_API_KEY);
 
