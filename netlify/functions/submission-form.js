@@ -7,9 +7,9 @@ function sendEmail(client, message, senderEmail, senderName, email) {
                 email: senderEmail,
                 name: senderName
             },
-            subject: 'New Dismissial Submission Form',
-            to: email, 
-            html: `You have recieved a new submission form for: ${message}` // Body message
+            subject: 'New Dismissal Form Submission',
+            to: email, // Set the recipient email dynamically
+            html: `You have received a new submission form for: ${message}`
         };
 
         client

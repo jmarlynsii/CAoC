@@ -57,6 +57,10 @@
                                     <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
                                 </div>
                             </div>
+                                <!-- Hidden input field to include sender email -->
+                                <input type="hidden" id="senderEmail" name="senderEmail" value="your_email@example.com">
+                                <!-- Hidden input field to include sender name -->
+                                <input type="hidden" id="senderName" name="senderName" value="Your Name">
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
@@ -179,7 +183,7 @@ function getCurrentTime() {
               message: formData.get('fname') + ' ' + formData.get('fname'),
               senderEmail: formData.get('senderEmail'),
               senderName: formData.get('senderName'),
-              email: formData.get('email') 
+              email: 'jameciamarlynsia@gmail.com' 
           };
           fetch('/.netlify/functions/submission-form', {
               method: 'POST',
