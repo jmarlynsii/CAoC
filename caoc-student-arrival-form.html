@@ -50,7 +50,7 @@
                                     <div id="signature-pad" class="m-signature-pad w3-dashed">
                                         <div class="m-signature-pad--body">
                                             <canvas id="signature-canvas" width="300" height="200"></canvas> <!-- Set width and height -->
-                                            <input type="hidden" required ="signature" id="signature" value="" />
+                                            <input type="hidden" name="signature" id="signature" value="" />
                                         </div>
                                     </div>
 
@@ -90,8 +90,8 @@ function getContentInPDF() {
 
     // Generate filename based on first name, last name, current date, and time with hours, minutes, and seconds separated by dashes
     let currentDate = getCurrentDate(); // Get current date in MM-DD-YYYY format
-    let currentTime = getCurrentTime(); // Get current time in HH:MM:SS AM/PM format
-    let filename = `${firstName} ${lastName} ${currentDate} @ ${currentTime} Dismissal Form.pdf`;
+    let currentTime = getCurrentTime(); // Get current time in HH-MM-SS AM/PM format
+    let filename = `${firstName} ${lastName} ${currentDate} ${currentTime} Dismissal Form.pdf`;
 
     // Create a single HTML element by adding form data and signature
     let element = document.createElement("div");
@@ -123,7 +123,7 @@ function getCurrentDate() {
     return `${month}-${day}-${year}`;
 }
 
-// Function to get current time in HH:MM:SS AM/PM format
+// Function to get current time in HH-MM-SS AM/PM format
 function getCurrentTime() {
     let now = new Date();
     let hours = now.getHours();
@@ -138,9 +138,11 @@ function getCurrentTime() {
     minutes = (minutes < 10) ? '0' + minutes : minutes;
     seconds = (seconds < 10) ? '0' + seconds : seconds;
 
-    // Concatenate hours, minutes, seconds, and AM/PM with colons
-    return `${hours}:${minutes}:${seconds} ${ampm}`;
+    // Concatenate hours, minutes, seconds, and AM/PM
+    return `${hours}-${minutes}-${seconds} ${ampm}`;
 }
+
+
 
 
     // Function to clear signature
@@ -169,34 +171,5 @@ function getCurrentTime() {
         signaturePad.penColor = "#21409A";
     });
 </script>
-
-    <!-- JavaScript to handle form submission -->
-    <script>
-      document.getElementById('contactForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          const formData = new FormData(this);
-          const payload = {
-              message: formData.get('message'),
-              senderEmail: formData.get('senderEmail'),
-              senderName: formData.get('senderName'),
-              email: formData.get('email') // Changed to "recipientEmail"
-          };
-          fetch('/.netlify/functions/submission-generated', {
-              method: 'POST',
-              body: JSON.stringify(payload),
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          })
-          .then(data => {
-              alert('Submission has been sent!');
-              document.getElementById('contact-form').reset();
-          })
-          .catch(error => {
-              console.error('There was an error!', error);
-              document.getElementById('contact-form').reset();
-          });
-      });
-  </script>
 </body>
 </html>
