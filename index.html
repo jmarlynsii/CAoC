@@ -170,66 +170,33 @@ function getCurrentTime() {
     });
 </script>
 
-<!-- JavaScript to handle form submission -->
-<script>
-  document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const formData = new FormData(this);
-      const payload = {
-          message: formData.get('fname') + ' ' + formData.get('lname'),
-          senderEmail: formData.get('senderEmail'),
-          senderName: formData.get('senderName'),
-          email: 'jameciamarlynsia@gmail.com',
-          pdfData: getPDFData() // Add PDF data to payload
-      };
-      fetch('/.netlify/functions/submission-form', {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      })
-      .then(data => {
-          alert('Submission has been sent!');
-          document.getElementById('contactForm').reset();
-      })
-      .catch(error => {
-          console.error('There was an error!', error);
-          document.getElementById('contactForm').reset();
+    <!-- JavaScript to handle form submission -->
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          const payload = {
+              message: formData.get('fname') + ' ' + formData.get('fname'),
+              senderEmail: formData.get('senderEmail'),
+              senderName: formData.get('senderName'),
+              email: formData.get('email') 
+          };
+          fetch('/.netlify/functions/submission-form', {
+              method: 'POST',
+              body: JSON.stringify(payload),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(data => {
+              alert('Submission has been sent!');
+              document.getElementById('contact-form').reset();
+          })
+          .catch(error => {
+              console.error('There was an error!', error);
+              document.getElementById('contact-form').reset();
+          });
       });
-  });
-
-  // Function to get PDF data
-  function getPDFData() {
-      // Access form elements
-      let firstName = document.getElementById("fname").value;
-      let lastName = document.getElementById("lname").value;
-      let signatureDataURL = signaturePad.toDataURL(); // Get signature as data URL
-
-      // Generate filename based on first name, last name, current date, and time with hours, minutes, and seconds separated by dashes
-      let currentDate = getCurrentDate(); // Get current date in MM-DD-YYYY format
-      let currentTime = getCurrentTime(); // Get current time in HH:MM:SS AM/PM format
-      let filename = `${firstName} ${lastName} ${currentDate} @ ${currentTime} Dismissal Form.pdf`;
-
-      // Create a single HTML element by adding form data and signature
-      let element = document.createElement("div");
-      element.innerHTML =
-          "<h1>Child sign in/out form</h1>" +
-          "<p>Name: " +
-          firstName + " " + lastName +
-          "</p>" +
-          '<img src="' +
-          signatureDataURL +
-          '" />'; // Add signature as image
-
-      // Create a new PDF using the form element and set the filename
-      html2pdf().from(element).set({ filename: filename }).toPdf().get('pdf').then(function(pdf) {
-          // Convert the PDF to a data URL
-          pdfData = pdf.output('datauristring');
-          return pdfData;
-      });
-  }
-</script>
-
+  </script>
 </body>
 </html>
