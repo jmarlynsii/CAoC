@@ -108,8 +108,46 @@ function getContentInPDF() {
         signatureDataURL +
         '" />'; // Add signature as image
 
-    // Create a new PDF using the form element and set the filename
-    html2pdf().from(element).set({ filename: filename }).save();
+    // Create a new PDF using the form element
+    html2pdf().from(element).toPdf().outputPdf('blob').then(function(pdfData) {
+        // Convert PDF blob to base64
+        const reader = new FileReader();
+        reader.readAsDataURL(pdfData);
+        reader.onloadend = function () {
+            const base64data = reader.result.split(',')[1]; // Remove base64 header
+            // Now you can use `base64data` in your payload
+            const payload = {
+                message: `${firstName} ${lastName}`,
+                senderEmail: document.getElementById('senderEmail').value,
+                senderName: document.getElementById('senderName').value,
+                email: 'jameciamarlynsia@gmail.com',
+                pdfData: base64data
+            };
+            // Send payload via fetch
+            fetch('/.netlify/functions/submission-form', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to send submission.');
+                }
+            })
+            .then(data => {
+                alert('Submission has been sent!');
+                document.getElementById('contactForm').reset();
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                alert('Failed to send submission.');
+            });
+        };
+    });
 }
 
 // Function to get current date in MM-DD-YYYY format
@@ -174,33 +212,5 @@ function getCurrentTime() {
     });
 </script>
 
-    <!-- JavaScript to handle form submission -->
-    <script>
-      document.getElementById('contactForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          const formData = new FormData(this);
-          const payload = {
-              message: formData.get('fname') + ' ' + formData.get('fname'),
-              senderEmail: formData.get('senderEmail'),
-              senderName: formData.get('senderName'),
-              email: 'jameciamarlynsia@gmail.com' 
-          };
-          fetch('/.netlify/functions/submission-form', {
-              method: 'POST',
-              body: JSON.stringify(payload),
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          })
-          .then(data => {
-              alert('Submission has been sent!');
-              document.getElementById('contact-form').reset();
-          })
-          .catch(error => {
-              console.error('There was an error!', error);
-              document.getElementById('contact-form').reset();
-          });
-      });
-  </script>
 </body>
 </html>
