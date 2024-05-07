@@ -32,7 +32,8 @@
             const payload = {
                 message: formData.get('message'),
                 senderEmail: formData.get('senderEmail'),
-                senderName: formData.get('senderName')
+                senderName: formData.get('senderName'),
+                recipientEmail: formData.get('email') // Add recipient email field
             };
             fetch('/.netlify/functions/submission-generated', {
                 method: 'POST',

@@ -1,6 +1,6 @@
-const client = require("@sendgrid/mail")
+const client = require("@sendgrid/mail");
 
-function sendEmail(client, message, senderEmail, senderName) {
+function sendEmail(client, message, senderEmail, senderName, recipientEmail) {
     return new Promise((fulfill, reject) => {
         const data = {
             from: {
@@ -8,18 +8,17 @@ function sendEmail(client, message, senderEmail, senderName) {
                 name: senderName
             },
             subject: 'SendGrid Form',
-            to: 'jameciamarlynsia@gmail.com',
+            to: recipientEmail, // Use recipient email dynamically
             html: `New form submission<br/> ${message}`
-
-        }
+        };
 
         client
             .send(data)
             .then(([response, body]) => {
-                fulfill(response)
+                fulfill(response);
             })
-            .catch(error => reject(error))
-    })
+            .catch(error => reject(error));
+    });
 }
 
 exports.handler = function(event, context, callback) {
@@ -27,19 +26,20 @@ exports.handler = function(event, context, callback) {
         SENDGRID_API_KEY,
         SENDGRID_SENDER_EMAIL,
         SENDGRID_SENDER_NAME
-    } = process.env
+    } = process.env;
 
-    const body = JSON.parse(event.body)
-    const message = body.message
+    const body = JSON.parse(event.body);
+    const { message, senderEmail, senderName, recipientEmail } = body;
 
-    client.setApiKey(SENDGRID_API_KEY)
+    client.setApiKey(SENDGRID_API_KEY);
 
     sendEmail(
         client,
         message,
-        SENDGRID_SENDER_EMAIL,
-        SENDGRID_SENDER_NAME
+        senderEmail,
+        senderName,
+        recipientEmail
     )
     .then(response => callback(null, { statusCode: response.statusCode }))
-    .catch(err => callback(err, null))
-}
+    .catch(err => callback(err, null));
+};
