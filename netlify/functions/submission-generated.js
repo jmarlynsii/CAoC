@@ -1,14 +1,14 @@
 const client = require("@sendgrid/mail")
 
-function sendEmail(client, message, senderEmail, senderName, reEmail) {
+function sendEmail(client, message, senderEmail, senderName, recipientEmail) {
     return new Promise((fulfill, reject) => {
         const data = {
             from: {
                 email: senderEmail,
-                name: senderName,
-                to: reEmail
+                name: senderName
             },
             subject: 'SendGrid Form',
+            to: recipientEmail,
             html: `New form submission<br/> ${message}`
 
         }
@@ -38,7 +38,8 @@ exports.handler = function(event, context, callback) {
         client,
         message,
         SENDGRID_SENDER_EMAIL,
-        SENDGRID_SENDER_NAME
+        SENDGRID_SENDER_NAME,
+        recipientEmail
     )
     .then(response => callback(null, { statusCode: response.statusCode }))
     .catch(err => callback(err, null))
