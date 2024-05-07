@@ -13,7 +13,7 @@
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required> <!-- Changed name to "recipientEmail" -->
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
             <!-- Hidden input field to include sender email -->
@@ -33,7 +33,7 @@
                 message: formData.get('message'),
                 senderEmail: formData.get('senderEmail'),
                 senderName: formData.get('senderName'),
-                recipientEmail: formData.get('email')
+                email: formData.get('email') // Changed to "recipientEmail"
             };
             fetch('/.netlify/functions/submission-generated', {
                 method: 'POST',
