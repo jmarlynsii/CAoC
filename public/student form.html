@@ -25,7 +25,9 @@
         font-weight: bold;
         margin-bottom: 5px;
     }
-    .form-group input {
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="file"] {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -52,12 +54,17 @@
     <form id="submitForm" name="submitForm">
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
         </div>
+        <div class="form-group">
+            <label for="file">Upload File:</label>
+            <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" required>
+        </div>
+        <input type="hidden" id="subject" name="subject" value="Submit Form (in testing)">
         <div class="form-group">
             <button type="submit">Submit</button>
         </div>
@@ -67,8 +74,32 @@
 <script>
     document.getElementById('submitForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
-        alert('Form submitted!'); // Alert user
+        submitForm(); // Call the function to submit the form data
     });
+
+    function submitForm() {
+    var formData = new FormData(document.getElementById('submitForm'));
+    var message = formData.get('message');
+    var email = formData.get('email');
+    var subject = formData.get('subject');
+
+    fetch('/.netlify/functions/testEmail', {
+        method: 'POST',
+        body: JSON.stringify({ message, email, subject }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        alert('Form submitted successfully!');
+        document.getElementById('submitForm').reset(); // Reset the form after successful submission
+    })
+    .catch(error => alert('There was a problem submitting the form:', error));
+}
+
 </script>
 
 </body>
