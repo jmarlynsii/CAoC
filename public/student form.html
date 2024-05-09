@@ -66,14 +66,18 @@
         </div>
         <input type="hidden" id="subject" name="subject" value="Submit Form (in testing)">
         <div class="form-group">
-            <button type="submit" onclick="submitForm()">Submit</button>
-            <button type="button" onclick="checkBrowserCompatibility()">Check Browser Compatibility</button>
+            <button type="submit">Submit</button>
         </div>
     </form>
 </div>
 
 <script>
-function submitForm() {
+    document.getElementById('submitForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        submitForm(); // Call the function to submit the form data
+    });
+
+    function submitForm() {
     var formData = new FormData(document.getElementById('submitForm'));
     var message = formData.get('name');
     var email = formData.get('email');
@@ -96,24 +100,6 @@ function submitForm() {
     .catch(error => alert('There was a problem submitting the form:', error));
 }
 
-function checkBrowserCompatibility() {
-    if (isBrowserOutdated()) {
-        alert("Your browser is outdated and may not support all features of this website. Please consider updating your browser for a better experience.");
-    } else {
-        alert("Your browser is up-to-date and compatible with this website.");
-    }
-}
-
-function isBrowserOutdated() {
-    // Check if the browser supports ES6 features (e.g., arrow functions, template literals)
-    try {
-        new Function('(a = 0) => a'); // Check for arrow function support
-        'test'.startsWith('te'); // Check for template literal support
-        return false; // Browser supports ES6
-    } catch (error) {
-        return true; // Browser does not support ES6 (likely outdated)
-    }
-}
 </script>
 
 </body>
