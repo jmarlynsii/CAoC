@@ -104,15 +104,15 @@
         <form id="submitForm" name="submitForm">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" value="Jamecia Moore">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="jaemciamarlynsia@gmail.com">
             </div>
             <div class="form-group">
                 <label for="file">Upload File:</label>
-                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" required>
+                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" hidden>
             </div>
             <div class="form-group">
                 <p><b></b></p>
@@ -192,26 +192,24 @@
             });
         }
 
-        function getContentInPDF(formData, callback) {
-            let signatureDataURL = signaturePad.toDataURL();
-            let currentDate = getCurrentDate();
-            let currentTime = getCurrentTime();
-            let filename = `ABC ${currentDate} ${currentTime} Dismissal Form.pdf`;
-
-            let element = document.createElement("div");
-            element.innerHTML =
-                "<h1>Child sign in/out form</h1>" +
-                '<img src="' + signatureDataURL + '" />'; // Add signature as image
-
-            html2pdf()
-                .from(element)
-                .set({ filename: filename })
-                .toPdf()
-                .get('pdf')
-                .then(pdf => {
-                    callback(new Blob([pdf.output('blob')], { type: 'application/pdf' }));
-                });
+        function convertSignatureToPDF() {
+        if (signaturePad.isEmpty()) {
+            alert("Please provide a signature first.");
+            return;
         }
+    }
+        function getContentInPDF(signaturePad, callback) {
+        let currentDate = getCurrentDate(); // Get the current date
+        let currentTime = getCurrentTime(); // Get the current time
+        let filename = `Signature_${currentDate}_${currentTime}.pdf`; // Generate a filename
+
+        // Use html2pdf to convert the signature canvas to PDF
+        html2pdf()
+            .from(document.getElementById("signature-container"))
+            .set({ filename: filename })
+            .save()
+            .then(callback);
+    }
 
         // Function to get current date in MM-DD-YYYY format
         function getCurrentDate() {
