@@ -1,11 +1,11 @@
 {
-    "name": "netlify-CAoC",
-    "version": "1.0.0",
-    "description": "A site for Student Sign in and dismissal",
-    "author": "Jamecia Moore",
-    "license": "ISC",
-    "dependencies": {
-      "@sendgrid/mail": "^7.4.0"
-    }
+  "name": "netlify-CAoC",
+  "version": "1.0.0",
+  "description": "A site for Student Sign in and dismissal",
+  "author": "Jamecia Moore",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.0",
+    "multiparty": "^4.2.1"
   }
-  
+}
