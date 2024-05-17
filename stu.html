@@ -5,17 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="fonts/icomoon/style.css" />
-
     <link rel="stylesheet" href="css/owl.carousel.min.css" />
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-
-    <!-- Required Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <title>Submit Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -119,18 +111,21 @@
                 <div id="signature-container">
                     <div id="signature-pad" class="m-signature-pad w3-dashed">
                         <div class="m-signature-pad--body">
-                            <canvas id="signature-canvas" width="300" height="200"></canvas> <!-- Set width and height -->
+                            <canvas id="signature-canvas" width="300" height="200"></canvas>
                             <input type="hidden" name="signature" id="signature" value="" />
                         </div>
                     </div>
                     <div class="signature-buttons">
                         <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
-                        <button type="button" class="w3-btn w3-black" onclick="downloadSignature()">Download Signature</button>
+                        <button type="button" class="w3-btn w3-black" onclick="downloadSignature()">Signature</button>
+                        <!-- Add a new button for converting the signature to PDF -->
+                        <button type="button" class="w3-btn w3-black" onclick="convertSignatureToPDF()">Convert</button>
                     </div>
                 </div>
             </div>
             <input type="hidden" id="subject" name="subject" value="Submit Form (in testing)">
-            <div class="form-group" style="margin-top: 20px;"> <!-- Add top margin to separate from previous group -->
+            <div class="form-group" style="margin-top: 20px;">
+                <br>
                 <br>
                 <br>
                 <button type="submit">Submit</button>
@@ -138,12 +133,8 @@
         </form>
     </div>
 
-
-    <script src="js/signature_pad.umd.min.js"></script>
-    <script src="js/app.js"></script>
-
     <script>
-        document.getElementById('submitForm').addEventListener('submit', function (event) {
+                document.getElementById('submitForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
             submitForm(); // Call the function to submit the form data
         });
@@ -192,67 +183,32 @@
             });
         }
 
-        function getContentInPDF(formData, callback) {
-            let signatureDataURL = signaturePad.toDataURL();
-            let currentDate = getCurrentDate();
-            let currentTime = getCurrentTime();
-            let filename = `ABC ${currentDate} ${currentTime} Dismissal Form.pdf`;
+    </script>
 
-            let element = document.createElement("div");
-            element.innerHTML =
-                "<h1>Child sign in/out form</h1>" +
-                '<img src="' + signatureDataURL + '" />'; // Add signature as image
-
-            html2pdf()
-                .from(element)
-                .set({ filename: filename })
-                .toPdf()
-                .get('pdf')
-                .then(pdf => {
-                    callback(new Blob([pdf.output('blob')], { type: 'application/pdf' }));
-                });
-        }
-
-        // Function to get current date in MM-DD-YYYY format
-        function getCurrentDate() {
-            let now = new Date();
-            let month = now.getMonth() + 1; // Get month (0-11) and add 1 to convert to (1-12)
-            let day = now.getDate();
-            let year = now.getFullYear();
-
-            // Add leading zero if needed
-            month = (month < 10) ? '0' + month : month;
-            day = (day < 10) ? '0' + day : day;
-
-            // Concatenate month, day, and year with dashes
-            return `${month}-${day}-${year}`;
-        }
-
-        // Function to get current time in HH-MM-SS AM/PM format
-        function getCurrentTime() {
-            let now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-            let ampm = (hours >= 12) ? 'PM' : 'AM';
-
-            // Convert hours from military time to 12-hour format
-            hours = (hours % 12 === 0) ? 12 : hours % 12;
-
-            // Add leading zero if needed
-            minutes = (minutes < 10) ? '0' + minutes : minutes;
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-
-            // Concatenate hours, minutes, seconds, and AM/PM
-            return `${hours}-${minutes}-${seconds} ${ampm}`;
-        }
-
-        // Function to clear signature
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="signature_pad.js"></script>
+    <script>
+        var signaturePad;
+    
+        window.addEventListener("DOMContentLoaded", function () {
+            var wrapper = document.getElementById("signature-pad");
+            var canvas = wrapper.querySelector("canvas");
+    
+            signaturePad = new SignaturePad(canvas);
+            signaturePad.minWidth = 1;
+            signaturePad.maxWidth = 1;
+            signaturePad.penColor = "#21409A";
+        });
+    
         function clearSignature() {
             signaturePad.clear();
         }
-
-        // Function to download signature
+    
         function downloadSignature() {
             let signatureDataURL = signaturePad.toDataURL();
             let a = document.createElement('a');
@@ -262,26 +218,67 @@
             a.click();
             document.body.removeChild(a);
         }
-    </script>
+    
+        function convertSignatureToPDF() {
+        if (signaturePad.isEmpty()) {
+            alert("Please provide a signature first.");
+            return;
+        }
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="signature_pad.js"></script>
-    <script type="text/javascript">
-        var signaturePad;
-
-        // Initialize signaturePad after the page is fully loaded
-        window.addEventListener("DOMContentLoaded", function () {
-            var wrapper = document.getElementById("signature-pad");
-            var canvas = wrapper.querySelector("canvas");
-
-            signaturePad = new SignaturePad(canvas);
-            signaturePad.minWidth = 1;
-            signaturePad.maxWidth = 1;
-            signaturePad.penColor = "#21409A";
+        getContentInPDF(signaturePad, function (pdfBlob) {
+            var pdfUrl = URL.createObjectURL(pdfBlob);
+            var a = document.createElement('a');
+            a.href = pdfUrl;
+            a.download = 'signature.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         });
+    }
+
+    function getContentInPDF(signaturePad, callback) {
+        let currentDate = getCurrentDate(); // Get the current date
+        let currentTime = getCurrentTime(); // Get the current time
+        let filename = `Signature_${currentDate}_${currentTime}.pdf`; // Generate a filename
+
+        // Use html2pdf to convert the signature canvas to PDF
+        html2pdf()
+            .from(document.getElementById("signature-container"))
+            .set({ filename: filename })
+            .save()
+            .then(callback);
+    }
+    
+        function getCurrentDate() {
+            let now = new Date();
+            let month = now.getMonth() + 1;
+            let day = now.getDate();
+            let year = now.getFullYear();
+    
+            month = (month < 10) ? '0' + month : month;
+            day = (day < 10) ? '0' + day : day;
+    
+            return `${month}-${day}-${year}`;
+        }
+    
+        function getCurrentTime() {
+            let now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let ampm = (hours >= 12) ? 'PM' : 'AM';
+    
+            hours = (hours % 12 === 0) ? 12 : hours % 12;
+    
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+    
+            return `${hours}-${minutes}-${seconds} ${ampm}`;
+        }
     </script>
+    
+    
+    
+</body>
+
 </html>
