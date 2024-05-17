@@ -1,5 +1,4 @@
 const client = require("@sendgrid/mail");
-const multiparty = require("multiparty");
 
 function sendEmail(client, message, senderEmail, senderName, email, subject, attachment) {
     return new Promise((fulfill, reject) => {
@@ -36,31 +35,23 @@ exports.handler = function(event, context, callback) {
         SENDGRID_SENDER_NAME
     } = process.env;
 
-    const form = new multiparty.Form();
+    const body = JSON.parse(event.body);
+    const message = body.message;
+    const email = body.email;
+    const subject = body.subject; // Retrieve subject from the form data
+    const attachment = body.attachment;
 
-    form.parse(event, (error, fields, files) => {
-        if (error) {
-            callback(error, null);
-            return;
-        }
+    client.setApiKey(SENDGRID_API_KEY);
 
-        const message = fields.message[0];
-        const email = fields.email[0];
-        const subject = fields.subject[0]; // Retrieve subject from the form data
-        const attachment = files.file[0].path; // Get the file path
-
-        client.setApiKey(SENDGRID_API_KEY);
-
-        sendEmail(
-            client,
-            message,
-            SENDGRID_SENDER_EMAIL,
-            SENDGRID_SENDER_NAME,
-            email,
-            subject, // Pass subject to the sendEmail function
-            attachment
-        )
-        .then(response => callback(null, { statusCode: response.statusCode }))
-        .catch(err => callback(err, null));
-    });
+    sendEmail(
+        client,
+        message,
+        SENDGRID_SENDER_EMAIL,
+        SENDGRID_SENDER_NAME,
+        email,
+        subject,
+        attachment
+    )
+    .then(response => callback(null, { statusCode: response.statusCode }))
+    .catch(err => callback(err, null));
 };
