@@ -14,7 +14,8 @@ function sendEmail(client, message, senderEmail, senderName, email, subject, att
                 {
                     content: attachment, // Attach the file content
                     filename: "filenameTest.pdf", // Specify the filename
-                    type: "application/pdf" // Specify the MIME type
+                    type: "application/pdf", // Specify the MIME type
+                    disposition: 'attachment'
                 }
             ]
         };
