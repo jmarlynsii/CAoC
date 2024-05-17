@@ -86,7 +86,7 @@ function submitForm() {
 
     fetch('/.netlify/functions/testA', {
         method: 'POST',
-        body: formData, // Pass the FormData object directly
+        body: JSON.stringify({ message, email, subject, attachment }),
         headers: {
             'Content-Type': 'application/json'
         }
