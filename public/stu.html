@@ -71,37 +71,55 @@
     </form>
 </div>
 
+
 <script>
     document.getElementById('submitForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
         submitForm(); // Call the function to submit the form data
     });
 
-function submitForm() {
-    var formData = new FormData(document.getElementById('submitForm'));
-    var message = formData.get('name');
-    var email = formData.get('email');
-    var subject = formData.get('subject');
-    var attachment = formData.get('file'); // Get the file data
+    function submitForm() {
+        var formData = new FormData(document.getElementById('submitForm'));
+        var message = formData.get('name');
+        var email = formData.get('email');
+        var subject = formData.get('subject');
+        var fileInput = document.getElementById('file');
+        var file = fileInput.files[0];
 
-    fetch('/.netlify/functions/testA', {
-        method: 'POST',
-        body: JSON.stringify({ message, email, subject, attachment }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        alert('Form submitted successfully!');
-        document.getElementById('submitForm').reset(); // Reset the form after successful submission
-    })
-    .catch(error => alert('There was a problem submitting the form:', error));
-}
+        // Convert file to base64
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            var base64File = reader.result.split(',')[1]; // Extract base64 data
 
+            // Construct the data to send
+            var data = {
+                message: message,
+                email: email,
+                subject: subject,
+                attachment: base64File
+            };
+
+            // Send data to server
+            fetch('/.netlify/functions/test', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                alert('Form submitted successfully!');
+                document.getElementById('submitForm').reset(); // Reset the form after successful submission
+            })
+            .catch(error => alert('There was a problem submitting the form:', error));
+        };
+    }
 </script>
+
 
 </body>
 </html>

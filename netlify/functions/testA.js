@@ -36,11 +36,26 @@ exports.handler = function(event, context, callback) {
         SENDGRID_SENDER_NAME
     } = process.env;
 
-    const body = JSON.parse(event.body);
-    const message = body.message;
-    const email = body.email;
-    const subject = body.subject; // Retrieve subject from the form data
-    const attachment = body.attachment;
+    // Check if required environment variables are provided
+    if (!SENDGRID_API_KEY || !SENDGRID_SENDER_EMAIL || !SENDGRID_SENDER_NAME) {
+        return callback("Required environment variables are missing.", null);
+    }
+
+    // Parse request body
+    let body;
+    try {
+        body = JSON.parse(event.body);
+    } catch (error) {
+        return callback("Malformed request body.", null);
+    }
+
+    // Extract required fields from request body
+    const { message, email, subject, attachment } = body;
+
+    // Check if all required fields are provided
+    if (!message || !email || !subject || !attachment) {
+        return callback("Required fields are missing in the request body.", null);
+    }
 
     client.setApiKey(SENDGRID_API_KEY);
 
