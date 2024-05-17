@@ -174,22 +174,15 @@
 </body>
 <script>
 function getContentInPDF(formData, callback) {
-    let firstName = formData.get('name');
-    let lastName = formData.get('lname'); // Make sure you have a field with id 'lname' in your form
     let signatureDataURL = signaturePad.toDataURL();
     let currentDate = getCurrentDate();
     let currentTime = getCurrentTime();
-    let filename = `${firstName} ${lastName} ${currentDate} ${currentTime} Dismissal Form.pdf`;
+    let filename = `ABC ${currentDate} ${currentTime} Dismissal Form.pdf`;
     
     let element = document.createElement("div");
     element.innerHTML =
         "<h1>Child sign in/out form</h1>" +
-        "<p>Name: " +
-        firstName + " " + lastName +
-        "</p>" +
-        '<img src="' +
-        signatureDataURL +
-        '" />';
+        '<img src="' + signatureDataURL + '" />'; // Add signature as image
     
     html2pdf()
         .from(element)
