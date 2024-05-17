@@ -58,6 +58,11 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-right: 10px; /* Add right margin */
+        }
+
+        .form-group button:last-child {
+            margin-right: 0; /* Remove margin from the last button */
         }
 
         .form-group button:hover {
@@ -83,7 +88,7 @@
 
         .signature-buttons {
             position: absolute;
-            bottom: -40px;
+            bottom: -50px;
             left: 0;
             width: 100%;
             display: flex;
@@ -125,7 +130,9 @@
                 </div>
             </div>
             <input type="hidden" id="subject" name="subject" value="Submit Form (in testing)">
-            <div class="form-group">
+            <div class="form-group" style="margin-top: 20px;"> <!-- Add top margin to separate from previous group -->
+                <br>
+                <br>
                 <button type="submit">Submit</button>
             </div>
         </form>
@@ -146,13 +153,16 @@
             var message = formData.get('name');
             var email = formData.get('email');
             var subject = formData.get('subject');
-            
+
             // Generate PDF
             getContentInPDF(formData, function (pdfBlob) {
                 var reader = new FileReader();
                 reader.readAsDataURL(pdfBlob);
                 reader.onloadend = function () {
                     var base64File = reader.result.split(',')[1]; // Extract base64 data
+
+                    // Alert the signature URL
+                     alert('Signature URL: ' + signaturePad.toDataURL());
 
                     // Construct the data to send
                     var data = {
@@ -187,12 +197,12 @@
             let currentDate = getCurrentDate();
             let currentTime = getCurrentTime();
             let filename = `ABC ${currentDate} ${currentTime} Dismissal Form.pdf`;
-            
+
             let element = document.createElement("div");
             element.innerHTML =
                 "<h1>Child sign in/out form</h1>" +
                 '<img src="' + signatureDataURL + '" />'; // Add signature as image
-            
+
             html2pdf()
                 .from(element)
                 .set({ filename: filename })
@@ -202,22 +212,22 @@
                     callback(new Blob([pdf.output('blob')], { type: 'application/pdf' }));
                 });
         }
-            
+
         // Function to get current date in MM-DD-YYYY format
         function getCurrentDate() {
             let now = new Date();
             let month = now.getMonth() + 1; // Get month (0-11) and add 1 to convert to (1-12)
             let day = now.getDate();
             let year = now.getFullYear();
-        
+
             // Add leading zero if needed
             month = (month < 10) ? '0' + month : month;
             day = (day < 10) ? '0' + day : day;
-        
+
             // Concatenate month, day, and year with dashes
             return `${month}-${day}-${year}`;
         }
-        
+
         // Function to get current time in HH-MM-SS AM/PM format
         function getCurrentTime() {
             let now = new Date();
@@ -225,18 +235,18 @@
             let minutes = now.getMinutes();
             let seconds = now.getSeconds();
             let ampm = (hours >= 12) ? 'PM' : 'AM';
-        
+
             // Convert hours from military time to 12-hour format
             hours = (hours % 12 === 0) ? 12 : hours % 12;
-        
+
             // Add leading zero if needed
             minutes = (minutes < 10) ? '0' + minutes : minutes;
             seconds = (seconds < 10) ? '0' + seconds : seconds;
-        
+
             // Concatenate hours, minutes, seconds, and AM/PM
             return `${hours}-${minutes}-${seconds} ${ampm}`;
         }
-        
+
         // Function to clear signature
         function clearSignature() {
             signaturePad.clear();
@@ -253,7 +263,7 @@
             document.body.removeChild(a);
         }
     </script>
-    
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -262,12 +272,12 @@
     <script src="signature_pad.js"></script>
     <script type="text/javascript">
         var signaturePad;
-    
+
         // Initialize signaturePad after the page is fully loaded
         window.addEventListener("DOMContentLoaded", function () {
             var wrapper = document.getElementById("signature-pad");
             var canvas = wrapper.querySelector("canvas");
-    
+
             signaturePad = new SignaturePad(canvas);
             signaturePad.minWidth = 1;
             signaturePad.maxWidth = 1;
