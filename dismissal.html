@@ -147,6 +147,8 @@
             var email = formData.get('email');
             var subject = formData.get('subject');
 
+            let currentDate = getCurrentDate();
+            let currentTime = getCurrentTime();
             getContentInPDF(formData, function (pdfBlob) {
                 var reader = new FileReader();
                 reader.readAsDataURL(pdfBlob);
@@ -155,12 +157,12 @@
                     alert('Signature URL: ' + signaturePad.toDataURL());
 
                     var data = {
-                    message: message,
-                    email: email,
-                    subject: subject,
-                    attachment: base64File,
-                    filename: `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`
-                };
+                        message: message,
+                        email: email,
+                        subject: subject,
+                        attachment: base64File,
+                        filename: `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`
+                    };
 
                     fetch('/.netlify/functions/testA', {
                         method: 'POST',
