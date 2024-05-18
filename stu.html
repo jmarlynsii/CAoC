@@ -194,11 +194,13 @@
 
     signatureImage.onload = function () {
 
-        // Create a container div for the color divs
-        let colorsContainer = document.createElement('div');
-        colorsContainer.style.display = 'flex'; // Set display to flex
-        colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
-        colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
+                // Create a container div for the color divs
+                let colorsContainer = document.createElement('div');
+                colorsContainer.style.display = 'flex'; // Set display to flex
+                colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
+                colorsContainer.style.justifyContent = 'center'; // Center items horizontally
+                colorsContainer.style.alignItems = 'center'; // Center items vertically
+                colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
 
 
         let currentDate = getCurrentDate();
@@ -211,12 +213,12 @@
         element.style.overflow = "auto"; // Allow overflow
 
         element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
-        '<h1 style="margin: 0; font-size: 26px; font-family: Arial, sans-serif; font-weight: bold; color: #FF000B;">Student Dismissal Form</h1>' +
+        '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
         '</div>' +
         '<div style="margin-bottom: 20px;">' +
-        '<p style="margin-left: 20px; margin-bottom: 5px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
-        '<p style="margin-left: 20px; margin-bottom: 5px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Student Name:</strong> ' + name + '</p>' +
-        '<p style="margin-left: 20px; margin-bottom: 0px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Parent/Guardian Signature:</strong></p>' +
+        '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
+        '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Student Name:</strong> ' + name + '</p>' +
+        '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Parent/Guardian Signature:</strong></p>' +
         '</div>';
 
         element.appendChild(signatureImage);
@@ -228,7 +230,7 @@
             "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
             "I understand that care was provided by an appropriately trained tutor. " +
             "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-        authorizationParagraph.style.margin = "0 20px 10px"; // Set margin
+        authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
 
         // Append the authorization paragraph
         element.appendChild(authorizationParagraph);
@@ -236,17 +238,19 @@
         // Append the colors container to the main element
         element.appendChild(colorsContainer);
 
-        // Loop through colors and create color divs
-        let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE', '#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE', '#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE', '#ED1C24', '#21409A', '#FFDE17'];
-        colors.forEach(color => {
-            let colorDiv = document.createElement('div');
-            colorDiv.style.backgroundColor = color;
-            colorDiv.style.height = '50px'; // Adjust height as needed
-            colorDiv.style.width = '25px'; // Adjust width as needed
-            colorDiv.style.margin = '0 10px 10px 0'; // Set margin
-            colorsContainer.appendChild(colorDiv); // Append color div to colors container
-        });
-        let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
+// Loop through colors and create color divs
+let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE'];
+colors.forEach(color => {
+    let colorDiv = document.createElement('div');
+    colorDiv.style.backgroundColor = color;
+    colorDiv.style.height = '25px'; // Set height
+    colorDiv.style.width = '25px'; // Set width
+    colorDiv.style.borderRadius = '50%'; // Make the div circular
+    colorDiv.style.margin = '0 10px 30px 0'; // Set margin
+    colorsContainer.appendChild(colorDiv); // Append color div to colors container
+});
+
+    let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
 
             html2pdf()
                 .from(element)
