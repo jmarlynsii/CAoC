@@ -94,11 +94,11 @@
         <form id="submitForm" name="submitForm">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="Jamecia Moore">
+                <input type="text" id="name" name="name" placeholder="student's name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="jameciamarlynsia@gmail.com">
+                <input type="email" id="email" name="email" placeholder="your-email@void.com" required>
             </div>
             <div class="form-group">
                 <label for="file" hidden>Upload File:</label>
@@ -177,6 +177,7 @@
                         }
                         alert('Form submitted successfully!');
                         document.getElementById('submitForm').reset(); 
+                        clearSignature();
                     })
                     .catch(error => alert('There was a problem submitting the form:', error));
                 };
