@@ -9,7 +9,7 @@ function sendEmail(client, message, senderEmail, senderName, email, subject, att
             },
             subject: `New Submission: ${message} Dismissal Form`,
             to: email,
-            html: `You have received a new submission form from: ${message}'s Parent/Guardian.`,
+            html: `You have received a new submission from: ${message}'s Parent/Guardian.`,
             attachments: [
                 {
                     content: attachment, // Attach the file content
