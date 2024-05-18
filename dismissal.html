@@ -154,14 +154,14 @@
                 reader.readAsDataURL(pdfBlob);
                 reader.onloadend = function () {
                     var base64File = reader.result.split(',')[1]; 
-                    alert('Signature URL: ' + signaturePad.toDataURL());
+                 //   alert('Signature URL: ' + signaturePad.toDataURL());
 
                     var data = {
                         message: message,
                         email: email,
                         subject: subject,
                         attachment: base64File,
-                        filename: `${name} Dismissal Form ${currentDate}.pdf`
+                        filename: `${message} Dismissal Form ${currentDate}.pdf`
                     };
 
                     fetch('/.netlify/functions/testA', {
