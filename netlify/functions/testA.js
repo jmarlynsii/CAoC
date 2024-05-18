@@ -7,9 +7,9 @@ function sendEmail(client, message, senderEmail, senderName, email, subject, att
                 email: senderEmail,
                 name: senderName
             },
-            subject: subject,
+            subject: `New Submission: ${message} Dismissal Form`,
             to: email,
-            html: `New form submission<br/> ${message}`,
+            html: `New Submission: ${message} Dismissal Form`,
             attachments: [
                 {
                     content: attachment, // Attach the file content

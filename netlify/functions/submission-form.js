@@ -9,7 +9,7 @@ function sendEmail(client, message, senderEmail, senderName, email, pdfData, fil
             },
             subject: `${message} Dismissal Form`, // Use message variable and add "Dismissal Form" suffix
             to: email, // Set the recipient email dynamically
-            html: `You have received a new submission form for: ${message}`,
+            html: `You have received a new submission form for: ${message} Parent/Guardian.`,
             attachments: [
                 {
                     content: pdfData,
