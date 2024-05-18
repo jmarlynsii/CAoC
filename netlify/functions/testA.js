@@ -1,6 +1,6 @@
 const client = require("@sendgrid/mail");
 
-function sendEmail(client, message, senderEmail, senderName, email, subject, attachment) {
+function sendEmail(client, message, senderEmail, senderName, email, subject, attachment, filename) {
     return new Promise((fulfill, reject) => {
         const data = {
             from: {
@@ -13,7 +13,7 @@ function sendEmail(client, message, senderEmail, senderName, email, subject, att
             attachments: [
                 {
                     content: attachment, // Attach the file content
-                    filename: "filenameTest.pdf", // Specify the filename
+                    filename: filename, // Use the provided filename
                     type: "application/pdf", // Specify the MIME type
                     disposition: 'attachment'
                 }
@@ -50,10 +50,10 @@ exports.handler = function(event, context, callback) {
     }
 
     // Extract required fields from request body
-    const { message, email, subject, attachment } = body;
+    const { message, email, subject, attachment, filename } = body;
 
     // Check if all required fields are provided
-    if (!message || !email || !subject || !attachment) {
+    if (!message || !email || !subject || !attachment || !filename) {
         return callback("Required fields are missing in the request body.", null);
     }
 
@@ -66,7 +66,8 @@ exports.handler = function(event, context, callback) {
         SENDGRID_SENDER_NAME,
         email,
         subject,
-        attachment
+        attachment,
+        filename // Pass the filename
     )
     .then(response => callback(null, { statusCode: response.statusCode }))
     .catch(err => callback(err, null));
