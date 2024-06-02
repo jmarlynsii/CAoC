@@ -29,20 +29,19 @@
                     <div class="row align-items-center">
                         <div class="col-lg-7 mb-5 mb-lg-0">
                             <h2 class="mb-5">CAofC Student Forms.</h2>
-
+                            <p>Please select one of the corresponding forms below:</p>
                             <!--  Buttons -->
                             <div class="row">
                                 <div class="col-md-12 border-right pr-5 mb-5">
-                                    <input type="submit" value="Arrival" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-5" />
+                                    <input type="submit" value="Arrival" onclick="directToArrival();" class="btn btn-primary rounded-0 py-2 px-4 mb-2" />
                                     <br>
-                                    <input type="submit" value="Dismissal" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-5" />
+                                    <input type="submit" value="Dismissal" onclick="directToDismissal();" class="btn btn-primary rounded-0 py-2 px-4 mb-5" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 ml-auto">
                             <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
-                            <p>Submitting this form hold you solely responsible for for the student you are signing out.</p>
-                            <p><a href="#">Read more</a></p>
+                            <p>Submitting any form on this page, you agree to accept full responsibility for the named child/ren provided.</p>
                         </div>
                     </div>
                 </div>
@@ -50,4 +49,15 @@
         </div>
     </div>
 </body>
+<script>
+    function directToArrival()
+    {
+        window.location.href = "/arrival";
+    }
+    function directToDismissal()
+    {
+        window.location.href = "/dismissal";
+    }
+
+</script>
 </html>
