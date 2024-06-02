@@ -22,27 +22,34 @@
     <title>CAofC Student Forms</title>
 </head>
 <body>
-    <div class="container">
-        <h2 class="mb-5">CAofC Student Forms</h2>
+    <div class="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 mb-5 mb-lg-0">
+                            <h2 class="mb-5">CAofC Student Forms.</h2>
+                            
+                                                <!-- Arrival Button -->
+                            <input type="submit" value="Arrival" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-3" />
 
-        <!-- Arrival Button -->
-        <input type="submit" value="Arrival" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-3" />
-
-        <!-- Dismissal Button -->
-        <input type="submit" value="Dismissal" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-5" />
+                            <!-- Dismissal Button -->
+                            <input type="submit" value="Dismissal" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4 mb-5" />
+    
+                            <div id="form-message-warning mt-4"></div>
+                            <div id="form-message-success">
+                                Your message was sent, thank you!
+                            </div>
+                        </div>
+                        <div class="col-lg-4 ml-auto">
+                            <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
+                            <p>Submitting this form hold you solely responsible for for the student you are signing out.</p>
+                            <p><a href="#">Read more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- JavaScript function for PDF generation -->
-    <script>
-        function getContentInPDF() {
-            // Code to generate PDF
-            // This function needs to be implemented
-        }
-    </script>
 </body>
 </html>
