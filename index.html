@@ -35,20 +35,20 @@
                         <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
                            
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="email" hidden>Child/ren Name:</label>
+                                <div class="col-md-12 form-group">
+                                    <label for="email">Child/ren Name:</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Child/ren Name" />
                                 </div>
                             </div>
 
             
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="email" hidden>Child/ren Guardian's Email:</label>
+                                <div class="col-md-12 form-group">
+                                    <label for="email">Child/ren Guardian's Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="your-email@void.com" />
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <!-- Add signature pad here-->
                                 <div class="w3-container">
@@ -64,10 +64,12 @@
                                     <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
                                 </div>
                             </div>
+
                                 <!-- Hidden input field to include sender email -->
                                 <input type="hidden" id="senderEmail" name="senderEmail" value="your_email@example.com">
                                 <!-- Hidden input field to include sender name -->
                                 <input type="hidden" id="senderName" name="senderName" value="Your Name">
+                                
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
