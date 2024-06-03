@@ -1,392 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+        <link rel="stylesheet" href="fonts/icomoon/style.css" />
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="css/owl.carousel.min.css" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
 
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css" />
+        <!-- Style -->
+        <link rel="stylesheet" href="css/style.css" />
 
-    <link href="w3.css" type="text/css" rel="stylesheet" />
+        <link href="w3.css" type="text/css" rel="stylesheet" />
 
-    <!-- Required Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <!-- Required Script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <title>CAofC | Dismissal Form</title>
-</head>
-<body>
-<div class="content">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 mb-5 mb-lg-0">
-                        <h2 class="mb-5">Student Dismissal Form.</h2>
+        <title>CAofC | Dismissal Form</title>
 
-                        <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
-                           
-                            <div class="row">
-                                <div class="col-md-10 form-group">
-                                    <label for="email">Child/ren Name:</label>
-                                    <input type="text" class="form-control" name="name" id="name" />
-                                </div>
-                            </div>
+        <style>
+            /* Container styles */
+            .design-form-container {
+                background-color: #f0f0f0;
+                padding: 20px;
+                margin: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                min-height: 100vh; /* Set minimum height to 100% of viewport height */
+                overflow-y: auto; /* Add vertical scroll if content exceeds container height */
+            }
 
-            
-                            <div class="row">
-                                <div class="col-md-10 form-group">
-                                    <label for="email">Child/ren Guardian Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email" />
-                                </div>
-                            </div>
+            /* Header styles */
+            .design-form-header {
+                text-align: center;
+            }
 
-                            <div class="row">
-                                <!-- Add signature pad here-->
-                                <div class="w3-container">
-                                    <label for="signature"> Guardian Signature:</label>
-                                    <br />
-                                    <div id="signature-pad" class="m-signature-pad w3-dashed">
-                                        <div class="m-signature-pad--body">
-                                            <canvas id="signature-canvas" width="325" height="250"></canvas> <!-- Set width and height -->
-                                            <input type="hidden" required ="signature" id="signature" value="" />
+            .design-form-header h1 {
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            /* Content styles */
+            .design-form-content p {
+                margin: 10px 0;
+            }
+
+            /* Authorization paragraph styles */
+            .design-authorization-paragraph {
+                margin-top: 20px;
+            }
+
+            /* Media query for smaller screens */
+            @media (max-width: 768px) {
+                .design-form-container {
+                    margin: 10px;
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 mb-5 mb-lg-0">
+                                <h2 class="mb-5">Student Dismissal Form.</h2>
+
+                                <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-10 form-group">
+                                            <label for="email">Child/ren Name:</label>
+                                            <input type="text" class="form-control" name="name" id="name" />
                                         </div>
                                     </div>
 
-                                    <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
+                                    <div class="row">
+                                        <div class="col-md-10 form-group">
+                                            <label for="email">Child/ren Guardian Email:</label>
+                                            <input type="email" class="form-control" name="email" id="email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Add signature pad here-->
+                                        <div class="w3-container">
+                                            <label for="signature"> Guardian Signature:</label>
+                                            <br />
+                                            <div id="signature-pad" class="m-signature-pad w3-dashed">
+                                                <div class="m-signature-pad--body">
+                                                    <canvas id="signature-canvas" width="325" height="200"></canvas>
+                                                    <!-- Set width and height -->
+                                                    <input type="hidden" required="signature" id="signature" value="" />
+                                                </div>
+                                            </div>
+
+                                            <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
+                                            <span class="submitting"></span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div id="form-message-warning mt-4"></div>
+                                <div id="form-message-success">
+                                    Your message was sent, thank you!
                                 </div>
                             </div>
+                            <div class="col-lg-4 ml-auto">
+                                <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
+                                <p>I hereby inform Collegiate Academy of Carolina that l am authorized to pick up the above named child/ren at this time.</p>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
-                                    <span class="submitting"></span>
-                                </div>
+                                <p>
+                                    I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. I understand that care was provided by an appropriately trained tutor. I hereby authorize
+                                    Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)
+                                </p>
                             </div>
-                        </form>
-
-                        <div id="form-message-warning mt-4"></div>
-                        <div id="form-message-success">
-                            Your message was sent, thank you!
                         </div>
-                    </div>
-                    <div class="col-lg-4 ml-auto">
-                        <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
-                        <p>I hereby inform Collegiate Academy of Carolina that l am authorized to pick up the above named child/ren at this time.</p>
-
-                        <p>I confirm that Collegiate Academy of Carolina has provided appropriate  services to the above named Learner. I understand that care was provided by an appropriately trained tutor. I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today.  (Approved 05/2024)</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<script src="js/signature_pad.umd.min.js"></script>
-<script src="js/app.js"></script>
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function (event) {
-        event.preventDefault(); 
-        contactForm(); 
-    });
-
-    function contactForm() {
-        var formData = new FormData(document.getElementById('contactForm'));
-        var message = formData.get('name');
-        var email = formData.get('email');
-
-        let currentDate = getCurrentDate();
-        let currentTime = getCurrentTime();
-        getContentInPDF(formData, function (pdfBlob) {
-            var reader = new FileReader();
-            reader.readAsDataURL(pdfBlob);
-            reader.onloadend = function () {
-                var base64File = reader.result.split(',')[1]; 
-             //   alert('Signature URL: ' + signaturePad.toDataURL());
-
-                var data = {
-                    message: message,
-                    email: email,
-                    attachment: base64File,
-                    filename: `${message} Dismissal Form ${currentDate}.pdf`
-                };
-
-                fetch('/.netlify/functions/testB', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    alert('Dismissal Form submitted successfully!');
-                    document.getElementById('contactForm').reset(); 
-                    clearSignature();
-                    returnToHome();
-                })
-                .catch(error => alert('There was a problem submitting the form:', error));
-            };
-        });
-    }
-
-    function getContentInPDF(formData, callback) {
-        let name = document.getElementById('name').value;
-let comment = document.getElementById('email').value;
-
-let canvas = document.getElementById('signature-canvas');
-let signatureDataURL = canvas.toDataURL('image/png');
-
-let butterflyImage = document.getElementById('butterfly-image'); // Getting the butterfly image by its ID
-
-let signatureImage = new Image();
-signatureImage.src = signatureDataURL;
-
-signatureImage.onload = function () {
-
-            // Create a container div for the color divs
-            let colorsContainer = document.createElement('div');
-            colorsContainer.style.display = 'flex'; // Set display to flex
-            colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
-            colorsContainer.style.justifyContent = 'center'; // Center items horizontally
-            colorsContainer.style.alignItems = 'center'; // Center items vertically
-            colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
-
-
-    let currentDate = getCurrentDate();
-    let currentTime = getCurrentTime();
-
-    let element = document.createElement('div');
-    element.style.backgroundColor = "#f0f0f0";
-    element.style.border = "1px solid #000"; // Add border style
-    element.style.overflow = "auto"; // Allow overflow
-    element.style.padding = "20px"; // Add padding
-
-
-    element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
-    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
-    '</div>' +
-    '<div style="margin-bottom: 20px;">' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Name:</strong> ' + name + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Email:</strong> ' + comment + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Signature:</strong></p>' +
-    '</div>';
-
-    element.appendChild(signatureImage);
-    element.appendChild(document.createElement('hr'));
-
-    // Create a new paragraph element with authorization text and style
-    let authorizationParagraph = document.createElement('p');
-    authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-        "I understand that care was provided by an appropriately trained tutor. " +
-        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-    authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
-
-    // Append the authorization paragraph
-    element.appendChild(authorizationParagraph);
-
-    // Append the colors container to the main element
-    element.appendChild(colorsContainer);
-
-// Loop through colors and create color divs
-let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE'];
-colors.forEach(color => {
-let colorDiv = document.createElement('div');
-colorDiv.style.backgroundColor = color;
-colorDiv.style.height = '25px'; // Set height
-colorDiv.style.width = '25px'; // Set width
-colorDiv.style.borderRadius = '50%'; // Make the div circular
-colorDiv.style.margin = '0 10px 30px 0'; // Set margin
-colorsContainer.appendChild(colorDiv); // Append color div to colors container
-});
-
-let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
-
-        html2pdf()
-            .from(element)
-            .set({ filename: filename })
-            .toPdf()
-            .get('pdf')
-            .then(pdf => {
-                callback(new Blob([pdf.output('blob')], { type: 'application/pdf' }));
+        <script src="js/signature_pad.umd.min.js"></script>
+        <script src="js/app.js"></script>
+        <script>
+            document.getElementById("contactForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                contactForm();
             });
-        };
-    }
 
-    function getCurrentDate() {
-        let now = new Date();
-        let month = now.getMonth() + 1; 
-        let day = now.getDate();
-        let year = now.getFullYear();
+            function contactForm() {
+                var formData = new FormData(document.getElementById("contactForm"));
+                var message = formData.get("name");
+                var email = formData.get("email");
 
-        month = (month < 10) ? '0' + month : month;
-        day = (day < 10) ? '0' + day : day;
+                let currentDate = getCurrentDate();
+                let currentTime = getCurrentTime();
+                getContentInPDF(formData, function (pdfBlob) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(pdfBlob);
+                    reader.onloadend = function () {
+                        var base64File = reader.result.split(",")[1];
+                        //   alert('Signature URL: ' + signaturePad.toDataURL());
 
-        return `${month}-${day}-${year}`;
-    }
+                        var data = {
+                            message: message,
+                            email: email,
+                            attachment: base64File,
+                            filename: `${message} Dismissal Form ${currentDate}.pdf`,
+                        };
 
+                        fetch("/.netlify/functions/testB", {
+                            method: "POST",
+                            body: JSON.stringify(data),
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error("Network response was not ok");
+                                }
+                                alert("Dismissal Form submitted successfully!");
+                                document.getElementById("contactForm").reset();
+                                clearSignature();
+                                returnToHome();
+                            })
+                            .catch((error) => alert("There was a problem submitting the form:", error));
+                    };
+                });
+            }
 
-    function getContentPDF() {
-let name = document.getElementById('name').value;
-let comment = document.getElementById('email').value;
+            function getContentInPDF(formData, callback) {
+                let name = document.getElementById("name").value;
+                let comment = document.getElementById("email").value;
 
-let canvas = document.getElementById('signature-canvas');
-let signatureDataURL = canvas.toDataURL('image/png');
+                let canvas = document.getElementById("signature-canvas");
+                let signatureDataURL = canvas.toDataURL("image/png");
 
-let butterflyImage = document.getElementById('butterfly-image'); // Getting the butterfly image by its ID
+                let butterflyImage = document.getElementById("butterfly-image"); // Getting the butterfly image by its ID
 
-let signatureImage = new Image();
-signatureImage.src = signatureDataURL;
+                let signatureImage = new Image();
+                signatureImage.src = signatureDataURL;
 
-signatureImage.onload = function () {
+                signatureImage.onload = function () {
+                    // Create a container div for the color divs
+                    let colorsContainer = document.createElement("div");
+                    colorsContainer.style.display = "flex"; // Set display to flex
+                    colorsContainer.style.flexWrap = "wrap"; // Wrap flex items
+                    colorsContainer.style.justifyContent = "center"; // Center items horizontally
+                    colorsContainer.style.alignItems = "center"; // Center items vertically
+                    colorsContainer.style.marginBottom = "10px"; // Add some spacing between divs
 
-            // Create a container div for the color divs
-            let colorsContainer = document.createElement('div');
-            colorsContainer.style.display = 'flex'; // Set display to flex
-            colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
-            colorsContainer.style.justifyContent = 'center'; // Center items horizontally
-            colorsContainer.style.alignItems = 'center'; // Center items vertically
-            colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
+                    let currentDate = getCurrentDate();
+                    let currentTime = getCurrentTime();
 
+                    let element = document.createElement("div");
+                    element.classList.add("design-form-container"); // Adding CSS class
+                    element.innerHTML = `
+                <div class="design-form-header">
+                    <h1>Student Dismissal Form</h1>
+                </div>
+                <div class="design-form-content">
+                    <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
+                    <p><strong>Child/ren Name:</strong> ${name}</p>
+                    <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
+                    <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
+                </div>`;
+                    element.appendChild(signatureImage);
+                    element.appendChild(document.createElement("hr"));
 
-    let currentDate = getCurrentDate();
-    let currentTime = getCurrentTime();
+                    // Create a new paragraph element with authorization text and style
+                    let authorizationParagraph = document.createElement("p");
+                    authorizationParagraph.textContent =
+                        "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
+                        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
+                        "I understand that care was provided by an appropriately trained tutor. " +
+                        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
+                    authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
 
-    let element = document.createElement('div');
-    element.style.backgroundColor = "#f0f0f0";
-    element.style.border = "1px solid #000"; // Add border style
-    element.style.overflow = "auto"; // Allow overflow
-    element.style.width = "100%"; // Set width to 100%
+                    // Append the authorization paragraph
+                    element.appendChild(authorizationParagraph);
 
-    element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
-    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
-    '</div>' +
-    '<div style="margin-bottom: 20px;">' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Name:</strong> ' + name + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Email:</strong> ' + comment + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Signature:</strong></p>' +
-    '</div>';
+                    // Append the colors container to the main element
+                    element.appendChild(colorsContainer);
 
-    element.appendChild(signatureImage);
-    element.appendChild(document.createElement('hr'));
+                    // Loop through colors and create color divs
+                    let colors = ["#ED1C24", "#21409A", "#FFDE17", "#FFFFFF", "#000000", "#FABCAE"];
+                    colors.forEach((color) => {
+                        let colorDiv = document.createElement("div");
+                        colorDiv.style.backgroundColor = color;
+                        colorDiv.style.height = "25px"; // Set height
+                        colorDiv.style.width = "25px"; // Set width
+                        colorDiv.style.borderRadius = "50%"; // Make the div circular
+                        colorDiv.style.margin = "0 10px 30px 0"; // Set margin
+                        colorsContainer.appendChild(colorDiv); // Append color div to colors container
+                    });
 
-    // Create a new paragraph element with authorization text and style
-    let authorizationParagraph = document.createElement('p');
-    authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-        "I understand that care was provided by an appropriately trained tutor. " +
-        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-    authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
+                    let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
 
-    // Append the authorization paragraph
-    element.appendChild(authorizationParagraph);
+                    html2pdf()
+                        .from(element)
+                        .set({ filename: filename })
+                        .toPdf()
+                        .get("pdf")
+                        .then((pdf) => {
+                            callback(new Blob([pdf.output("blob")], { type: "application/pdf" }));
+                        });
+                };
+            }
 
-    // Append the colors container to the main element
-    element.appendChild(colorsContainer);
+            function getCurrentDate() {
+                let now = new Date();
+                let month = now.getMonth() + 1;
+                let day = now.getDate();
+                let year = now.getFullYear();
 
-// Loop through colors and create color divs
-let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE'];
-colors.forEach(color => {
-let colorDiv = document.createElement('div');
-colorDiv.style.backgroundColor = color;
-colorDiv.style.height = '25px'; // Set height
-colorDiv.style.width = '25px'; // Set width
-colorDiv.style.borderRadius = '50%'; // Make the div circular
-colorDiv.style.margin = '0 10px 30px 0'; // Set margin
-colorsContainer.appendChild(colorDiv); // Append color div to colors container
-});
+                month = month < 10 ? "0" + month : month;
+                day = day < 10 ? "0" + day : day;
 
-    
-    // Generate PDF from the element and save
-    html2pdf().from(element).set({ filename: name + ' Dismissal Form ' + currentDate + ' ' + currentTime + '.pdf' }).save();
-};
-}
+                return `${month}-${day}-${year}`;
+            }
 
+            function getCurrentTimePDF() {
+                let now = new Date();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let seconds = now.getSeconds();
+                let ampm = hours >= 12 ? "PM" : "AM";
 
+                hours = hours % 12 === 0 ? 12 : hours % 12;
 
-function getCurrentTimePDF() {
-        let now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        let seconds = now.getSeconds();
-        let ampm = (hours >= 12) ? 'PM' : 'AM';
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        hours = (hours % 12 === 0) ? 12 : hours % 12;
+                return `${hours}:${minutes}:${seconds} ${ampm}`;
+            }
 
-        minutes = (minutes < 10) ? '0' + minutes : minutes;
-        seconds = (seconds < 10) ? '0' + seconds : seconds;
+            function getCurrentTime() {
+                let now = new Date();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let seconds = now.getSeconds();
+                let ampm = hours >= 12 ? "PM" : "AM";
 
-        return `${hours}:${minutes}:${seconds} ${ampm}`;
-    }
+                hours = hours % 12 === 0 ? 12 : hours % 12;
 
-    function getCurrentTime() {
-        let now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        let seconds = now.getSeconds();
-        let ampm = (hours >= 12) ? 'PM' : 'AM';
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        hours = (hours % 12 === 0) ? 12 : hours % 12;
+                return `${hours}_${minutes}_${seconds} ${ampm}`;
+            }
 
-        minutes = (minutes < 10) ? '0' + minutes : minutes;
-        seconds = (seconds < 10) ? '0' + seconds : seconds;
+            function clearSignature() {
+                signaturePad.clear();
+            }
 
-        return `${hours}_${minutes}_${seconds} ${ampm}`;
-    }
+            function downloadSignature() {
+                let signatureDataURL = signaturePad.toDataURL();
+                let a = document.createElement("a");
+                a.href = signatureDataURL;
+                a.download = "signature.png";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
 
-    function clearSignature() {
-        signaturePad.clear();
-    }
+            function returnToHome() {
+                window.location.href = "/";
+            }
+        </script>
 
-    function downloadSignature() {
-        let signatureDataURL = signaturePad.toDataURL();
-        let a = document.createElement('a');
-        a.href = signatureDataURL;
-        a.download = 'signature.png';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="signature_pad.js"></script>
+        <script type="text/javascript">
+            var signaturePad;
 
-    function returnToHome() {
-    window.location.href = "/";
-    }
+            // Initialize signaturePad after the page is fully loaded
+            window.addEventListener("DOMContentLoaded", function () {
+                var wrapper = document.getElementById("signature-pad");
+                var canvas = wrapper.querySelector("canvas");
 
-</script>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/main.js"></script>
-<script src="signature_pad.js"></script>
-<script type="text/javascript">
-    var signaturePad;
-
-    // Initialize signaturePad after the page is fully loaded
-    window.addEventListener("DOMContentLoaded", function () {
-        var wrapper = document.getElementById("signature-pad");
-        var canvas = wrapper.querySelector("canvas");
-
-        signaturePad = new SignaturePad(canvas);
-        signaturePad.minWidth = 1;
-        signaturePad.maxWidth = 1;
-        signaturePad.penColor = "#21409A";
-    });
-</script>
-
-</body>
+                signaturePad = new SignaturePad(canvas);
+                signaturePad.minWidth = 1;
+                signaturePad.maxWidth = 1;
+                signaturePad.penColor = "#21409A";
+            });
+        </script>
+    </body>
 </html>
