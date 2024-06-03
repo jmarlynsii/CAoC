@@ -21,7 +21,7 @@
     <!-- Required Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <title>Child/ren Arrival Form</title>
+    <title>CAofC | Arrival Form</title>
 </head>
 <body>
 <div class="content">
@@ -167,10 +167,13 @@ signatureImage.onload = function () {
     let currentTime = getCurrentTime();
 
     let element = document.createElement('div');
-    element.style.backgroundColor = "#f0f0f0";
-    element.style.border = "1px solid #000"; // Add border style
-    element.style.overflow = "auto"; // Allow overflow
-    element.style.padding = "20px"; // Add padding
+        element.style.backgroundColor = "#f0f0f0";
+        element.style.border = "1px solid #000";
+        element.style.overflow = "auto";
+        element.style.padding = "20px"; // Add padding inside the element
+        element.style.boxSizing = 'border-box'; // Include padding and border in the element's total width and height
+        element.style.margin = "0 auto"; // Center the element
+        element.style.maxWidth = "100%"; // Ensure it doesn't overflow on small screens
 
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
@@ -263,12 +266,16 @@ signatureImage.onload = function () {
 
     let currentDate = getCurrentDate();
     let currentTime = getCurrentTime();
-
+    
     let element = document.createElement('div');
-    element.style.backgroundColor = "#f0f0f0";
-    element.style.border = "1px solid #000"; // Add border style
-    element.style.overflow = "auto"; // Allow overflow
-    element.style.width = "100%"; // Set width to 100%
+        element.style.backgroundColor = "#f0f0f0";
+        element.style.border = "1px solid #000";
+        element.style.overflow = "auto";
+        element.style.padding = "20px"; // Add padding inside the element
+        element.style.boxSizing = 'border-box'; // Include padding and border in the element's total width and height
+        element.style.margin = "0 auto"; // Center the element
+        element.style.maxWidth = "100%"; // Ensure it doesn't overflow on small screens
+
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
     '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Arrival Form</h1>' +
