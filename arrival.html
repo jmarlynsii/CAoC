@@ -147,7 +147,7 @@
                 const canvas = document.getElementById('signature-canvas');
                 if (isCanvasBlank(canvas)) {
                     alert("Parent/Guardian Signature is required!");
-                    event.preventDefault();
+                    return;
                 } else {
                     event.preventDefault();
                     contactForm();
