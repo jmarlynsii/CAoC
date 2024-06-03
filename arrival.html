@@ -257,6 +257,8 @@
             colorDiv.style.margin = "0 10px 30px 0";
             colorsContainer.appendChild(colorDiv);
         });
+        // Hide the design-form-container
+        element.style.display = "none"; // Hide from HTML but keep it in the PDF
 
         let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
 
