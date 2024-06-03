@@ -10,360 +10,359 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet" />
 
-        <link rel="stylesheet" href="fonts/icomoon/style.css" />
+		<link rel="stylesheet" href="fonts/icomoon/style.css" />
 
-        <link rel="stylesheet" href="css/owl.carousel.min.css" />
+		<link rel="stylesheet" href="css/owl.carousel.min.css" />
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
 
-        <!-- Style -->
-        <link rel="stylesheet" href="css/style.css" />
+		<!-- Style -->
+		<link rel="stylesheet" href="css/style.css" />
 
-        <link href="w3.css" type="text/css" rel="stylesheet" />
+		<link href="w3.css" type="text/css" rel="stylesheet" />
 
-        <!-- Required Script -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+		<!-- Required Script -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        <title>CAofC | Dismissal Form</title>
+		<title>CAofC | Dismissal Form</title>
+		<style>
+			/* Container styles */
+			.design-form-container {
+			    background-color: #f0f0f0;
+			    padding: 20px;
+			    margin: 20px;
+			    border-radius: 10px;
+			    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			    min-height: 100vh; /* Set minimum height to 100% of viewport height */
+			    overflow-y: auto; /* Add vertical scroll if content exceeds container height */
+			}
 
-        <style>
-            /* Container styles */
-            .design-form-container {
-                background-color: #f0f0f0;
-                padding: 20px;
-                margin: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                min-height: 100vh; /* Set minimum height to 100% of viewport height */
-                overflow-y: auto; /* Add vertical scroll if content exceeds container height */
-            }
+			/* Header styles */
+			.design-form-header {
+			    text-align: center;
+			}
 
-            /* Header styles */
-            .design-form-header {
-                text-align: center;
-            }
+			.design-form-header h1 {
+			    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			    font-weight: bold;
+			    margin: 0;
+			    padding-bottom: 5px;
+			}
 
-            .design-form-header h1 {
+			/* Content styles */
+			.design-form-content p {
                 font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-                font-weight: bold;
-                margin: 0;
-                padding-bottom: 5px;
-            }
+			    margin: 10px 0;
+			}
 
-            /* Content styles */
-            .design-form-content p {
-                margin: 10px 0;
-            }
+			/* Authorization paragraph styles */
+			.design-authorization-paragraph {
+                font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			    margin-top: 20px;
+			}
 
-            /* Authorization paragraph styles */
-            .design-authorization-paragraph {
-                margin-top: 20px;
-            }
+			/* Media query for smaller screens */
+			@media (max-width: 768px) {
+			    .design-form-container {
+			        margin: 10px;
+			        padding: 10px;
+			    }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-10">
+						<div class="row align-items-center">
+							<div class="col-lg-7 mb-5 mb-lg-0">
+								<h2 class="mb-5">Student Dismissal Form.</h2>
 
-            /* Media query for smaller screens */
-            @media (max-width: 768px) {
-                .design-form-container {
-                    margin: 10px;
-                    padding: 10px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="content">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7 mb-5 mb-lg-0">
-                                <h2 class="mb-5">Student Dismissal Form.</h2>
+								<form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
+									<div class="row">
+										<div class="col-md-10 form-group">
+											<label for="email">Child/ren Name:</label>
+											<input type="text" class="form-control" name="name" id="name" required />
+										</div>
+									</div>
 
-                                <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
-                                    <div class="row">
-                                        <div class="col-md-10 form-group">
-                                            <label for="email">Child/ren Name:</label>
-                                            <input type="text" class="form-control" name="name" id="name" required/>
-                                        </div>
-                                    </div>
+									<div class="row">
+										<div class="col-md-10 form-group">
+											<label for="email">Child/ren Guardian Email:</label>
+											<input type="email" class="form-control" name="email" id="email" required />
+										</div>
+									</div>
 
-                                    <div class="row">
-                                        <div class="col-md-10 form-group">
-                                            <label for="email">Child/ren Guardian Email:</label>
-                                            <input type="email" class="form-control" name="email" id="email" required/>
-                                        </div>
-                                    </div>
+									<div class="row">
+										<!-- Add signature pad here-->
+										<div class="w3-container">
+											<label for="signature"> Guardian Signature:</label>
+											<br />
+											<div id="signature-pad" class="m-signature-pad w3-dashed">
+												<div class="m-signature-pad--body">
+													<canvas id="signature-canvas" width="325" height="200"></canvas>
+													<!-- Set width and height -->
+													<input type="hidden" required="signature" id="signature" value="" />
+												</div>
+											</div>
 
-                                    <div class="row">
-                                        <!-- Add signature pad here-->
-                                        <div class="w3-container">
-                                            <label for="signature"> Guardian Signature:</label>
-                                            <br />
-                                            <div id="signature-pad" class="m-signature-pad w3-dashed">
-                                                <div class="m-signature-pad--body">
-                                                    <canvas id="signature-canvas" width="325" height="200"></canvas>
-                                                    <!-- Set width and height -->
-                                                    <input type="hidden" required="signature" id="signature" value="" />
-                                                </div>
-                                            </div>
+											<button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
+										</div>
+									</div>
 
-                                            <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
-                                        </div>
-                                    </div>
+									<div class="row">
+										<div class="col-md-12">
+											<input type="submit" value="Submit" class="btn btn-primary rounded-0 py-2 px-4" />
+											<span class="submitting"></span>
+										</div>
+									</div>
+								</form>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="submit" value="Submit" class="btn btn-primary rounded-0 py-2 px-4" />
-                                            <span class="submitting"></span>
-                                        </div>
-                                    </div>
-                                </form>
+								<div id="form-message-warning mt-4"></div>
+								<div id="form-message-success">
+									Your message was sent, thank you!
+								</div>
+							</div>
+							<div class="col-lg-4 ml-auto">
+								<h3 class="mb-4">Collegiate Academy of Carolina.</h3>
+								<p>I hereby inform Collegiate Academy of Carolina that l am authorized to pick up the above named child/ren at this time.</p>
+								<p>
+									I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. I understand that care was provided by an appropriately trained tutor. I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                                <div id="form-message-warning mt-4"></div>
-                                <div id="form-message-success">
-                                    Your message was sent, thank you!
-                                </div>
-                            </div>
-                            <div class="col-lg-4 ml-auto">
-                                <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
-                                <p>I hereby inform Collegiate Academy of Carolina that l am authorized to pick up the above named child/ren at this time.</p>
+		<script src="js/signature_pad.umd.min.js"></script>
+		<script src="js/app.js"></script>
+		<script>
+			            function isCanvasBlank(canvas) {
+			                const blank = document.createElement('canvas');
+			                blank.width = canvas.width;
+			                blank.height = canvas.height;
+			                return canvas.toDataURL() === blank.toDataURL();
+			            }
 
-                                <p>
-                                    I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. I understand that care was provided by an appropriately trained tutor. I hereby authorize
-                                    Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script src="js/signature_pad.umd.min.js"></script>
-        <script src="js/app.js"></script>
-        <script>
-            function isCanvasBlank(canvas) {
-                const blank = document.createElement('canvas');
-                blank.width = canvas.width;
-                blank.height = canvas.height;
-                return canvas.toDataURL() === blank.toDataURL();
-            }
-
-            document.getElementById("contactForm").addEventListener("submit", function(event) {
-            const canvas = document.getElementById('signature-canvas');
-            if (isCanvasBlank(canvas)) {
-                alert("Parent/Guardian Signature is required!");
-                event.preventDefault(); 
-            } else {
-                event.preventDefault(); 
-                contactForm();
-            }
-        });
+			            document.getElementById("contactForm").addEventListener("submit", function(event) {
+			            const canvas = document.getElementById('signature-canvas');
+			            if (isCanvasBlank(canvas)) {
+			                alert("Parent/Guardian Signature is required!");
+			                event.preventDefault(); // Ensure default submission is prevented
+			            } else {
+			                event.preventDefault(); // Prevent default form submission
+			                contactForm(); // Handle custom form submission
+			            }
+			        });
 
 
-            function contactForm() {
-                var formData = new FormData(document.getElementById("contactForm"));
-                var message = formData.get("name");
-                var email = formData.get("email");
 
-                let currentDate = getCurrentDate();
-                let currentTime = getCurrentTime();
-                getContentInPDF(formData, function (pdfBlob) {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(pdfBlob);
-                    reader.onloadend = function () {
-                        var base64File = reader.result.split(",")[1];
-                        //   alert('Signature URL: ' + signaturePad.toDataURL());
+			            function contactForm() {
+			                var formData = new FormData(document.getElementById("contactForm"));
+			                var message = formData.get("name");
+			                var email = formData.get("email");
 
-                        var data = {
-                            message: message,
-                            email: email,
-                            attachment: base64File,
-                            filename: `${message} Dismissal Form ${currentDate}.pdf`,
-                        };
+			                let currentDate = getCurrentDate();
+			                let currentTime = getCurrentTime();
+			                getContentInPDF(formData, function (pdfBlob) {
+			                    var reader = new FileReader();
+			                    reader.readAsDataURL(pdfBlob);
+			                    reader.onloadend = function () {
+			                        var base64File = reader.result.split(",")[1];
+			                        //   alert('Signature URL: ' + signaturePad.toDataURL());
 
-                        fetch("/.netlify/functions/testB", {
-                            method: "POST",
-                            body: JSON.stringify(data),
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        })
-                            .then((response) => {
-                                if (!response.ok) {
-                                    throw new Error("Network response was not ok");
-                                }
-                                alert("Dismissal Form submitted successfully!");
-                                document.getElementById("contactForm").reset();
-                                clearSignature();
-                                returnToHome();
-                            })
-                            .catch((error) => alert("There was a problem submitting the form:", error));
-                    };
-                });
-            }
+			                        var data = {
+			                            message: message,
+			                            email: email,
+			                            attachment: base64File,
+			                            filename: `${message} Dismissal Form ${currentDate}.pdf`,
+			                        };
 
-            function getContentInPDF(formData, callback) {
-            let name = document.getElementById("name").value;
-            let comment = document.getElementById("email").value;
+			                        fetch("/.netlify/functions/testB", {
+			                            method: "POST",
+			                            body: JSON.stringify(data),
+			                            headers: {
+			                                "Content-Type": "application/json",
+			                            },
+			                        })
+			                            .then((response) => {
+			                                if (!response.ok) {
+			                                    throw new Error("Network response was not ok");
+			                                }
+			                                alert("Dismissal Form submitted successfully!");
+			                                document.getElementById("contactForm").reset();
+			                                clearSignature();
+			                                returnToHome();
+			                            })
+			                            .catch((error) => alert("There was a problem submitting the form:", error));
+			                    };
+			                });
+			            }
 
-            let canvas = document.getElementById("signature-canvas");
-            let signatureDataURL = canvas.toDataURL("image/png");
+			            function getContentInPDF(formData, callback) {
+			    let name = document.getElementById("name").value;
+			    let comment = document.getElementById("email").value;
 
-            let colorsContainer = document.createElement("div");
-            colorsContainer.style.display = "flex";
-            colorsContainer.style.flexWrap = "wrap";
-            colorsContainer.style.justifyContent = "center";
-            colorsContainer.style.alignItems = "center";
-            colorsContainer.style.marginBottom = "10px";
+			    let canvas = document.getElementById("signature-canvas");
+			    let signatureDataURL = canvas.toDataURL("image/png");
 
-            let signatureImage = new Image();
-            signatureImage.src = signatureDataURL;
+			    let colorsContainer = document.createElement("div");
+			    colorsContainer.style.display = "flex";
+			    colorsContainer.style.flexWrap = "wrap";
+			    colorsContainer.style.justifyContent = "center";
+			    colorsContainer.style.alignItems = "center";
+			    colorsContainer.style.marginBottom = "10px";
 
-            signatureImage.onload = function () {
-                let currentDate = getCurrentDate();
-                let currentTime = getCurrentTime();
+			    let signatureImage = new Image();
+			    signatureImage.src = signatureDataURL;
 
-                    let element = document.createElement("div");
-                    element.classList.add("design-form-container"); // Adding CSS class
-                    element.innerHTML = `
-                <div class="design-form-header">
-                    <h1>Student Dismissal Form</h1>
-                </div>
-                <div class="design-form-content">
-                    <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
-                    <p><strong>Child/ren Name:</strong> ${name}</p>
-                    <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
-                    <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
-                </div>`;
-                    element.appendChild(signatureImage);
-                    element.appendChild(document.createElement("hr"));
+			    signatureImage.onload = function () {
+			        let currentDate = getCurrentDate();
+			        let currentTime = getCurrentTime();
 
-                    // Create a new paragraph element with authorization text and style
-                    let authorizationParagraph = document.createElement("p");
-                    authorizationParagraph.textContent =
-                        "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-                        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-                        "I understand that care was provided by an appropriately trained tutor. " +
-                        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-                        authorizationParagraph.classList.add("design-authorization-paragraph");
-                        element.appendChild(authorizationParagraph);
+			        let element = document.createElement("div");
+			        element.classList.add("design-form-container");
+			        element.innerHTML = `
+			            <div class="design-form-header">
+			                <h1>Student Dismissal Form</h1>
+			            </div>
+			            <div class="design-form-content">
+			                <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
+			                <p><strong>Child/ren Name:</strong> ${name}</p>
+			                <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
+			                <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
+			            </div>`;
+			        element.appendChild(signatureImage);
+			        element.appendChild(document.createElement("hr"));
 
-                        document.body.appendChild(element);
+			        let authorizationParagraph = document.createElement("p");
+			        authorizationParagraph.textContent =
+			            "I hereby inform Collegiate Academy of Carolina that l am authorized to pick up the above named child/ren at this time.\n" +
+			            "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
+			            "I understand that care was provided by an appropriately trained tutor. " +
+			            "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
+			        authorizationParagraph.classList.add("design-authorization-paragraph");
+			        element.appendChild(authorizationParagraph);
 
-                        element.appendChild(colorsContainer);
+			        document.body.appendChild(element);
 
-                        let colors = ["#ED1C24", "#21409A", "#FFDE17", "#FFFFFF", "#000000", "#FABCAE"];
-                        colors.forEach((color) => {
-                            let colorDiv = document.createElement("div");
-                            colorDiv.style.backgroundColor = color;
-                            colorDiv.style.height = "25px";
-                            colorDiv.style.width = "25px";
-                            colorDiv.style.borderRadius = "50%";
-                            colorDiv.style.margin = "0 10px 30px 0";
-                            colorsContainer.appendChild(colorDiv);
-                        });
+			        element.appendChild(colorsContainer);
 
+			        let colors = ["#ED1C24", "#21409A", "#FFDE17", "#FFFFFF", "#000000", "#FABCAE"];
+			        colors.forEach((color) => {
+			            let colorDiv = document.createElement("div");
+			            colorDiv.style.backgroundColor = color;
+			            colorDiv.style.height = "25px";
+			            colorDiv.style.width = "25px";
+			            colorDiv.style.borderRadius = "50%";
+			            colorDiv.style.margin = "0 10px 30px 0";
+			            colorsContainer.appendChild(colorDiv);
+			        });
 
-                    let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
+			        let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
 
-                    html2pdf()
-                        .from(element)
-                        .set({ filename: filename })
-                        .toPdf()
-                        .get("pdf")
-                        .then((pdf) => {
-                            callback(new Blob([pdf.output("blob")], { type: "application/pdf" }));
-                        });
-                };
-            }
+			        html2pdf()
+			            .from(element)
+			            .set({ filename: filename })
+			            .toPdf()
+			            .get("pdf")
+			            .then((pdf) => {
+			                callback(new Blob([pdf.output("blob")], { type: "application/pdf" }));
+			                document.body.removeChild(element); // Remove the element from the DOM
+			            });
+			    };
+			}
 
-            function getCurrentDate() {
-                let now = new Date();
-                let month = now.getMonth() + 1;
-                let day = now.getDate();
-                let year = now.getFullYear();
+			            function getCurrentDate() {
+			                let now = new Date();
+			                let month = now.getMonth() + 1;
+			                let day = now.getDate();
+			                let year = now.getFullYear();
 
-                month = month < 10 ? "0" + month : month;
-                day = day < 10 ? "0" + day : day;
+			                month = month < 10 ? "0" + month : month;
+			                day = day < 10 ? "0" + day : day;
 
-                return `${month}-${day}-${year}`;
-            }
+			                return `${month}-${day}-${year}`;
+			            }
 
-            function getCurrentTimePDF() {
-                let now = new Date();
-                let hours = now.getHours();
-                let minutes = now.getMinutes();
-                let seconds = now.getSeconds();
-                let ampm = hours >= 12 ? "PM" : "AM";
+			            function getCurrentTimePDF() {
+			                let now = new Date();
+			                let hours = now.getHours();
+			                let minutes = now.getMinutes();
+			                let seconds = now.getSeconds();
+			                let ampm = hours >= 12 ? "PM" : "AM";
 
-                hours = hours % 12 === 0 ? 12 : hours % 12;
+			                hours = hours % 12 === 0 ? 12 : hours % 12;
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+			                minutes = minutes < 10 ? "0" + minutes : minutes;
+			                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                return `${hours}:${minutes}:${seconds} ${ampm}`;
-            }
+			                return `${hours}:${minutes}:${seconds} ${ampm}`;
+			            }
 
-            function getCurrentTime() {
-                let now = new Date();
-                let hours = now.getHours();
-                let minutes = now.getMinutes();
-                let seconds = now.getSeconds();
-                let ampm = hours >= 12 ? "PM" : "AM";
+			            function getCurrentTime() {
+			                let now = new Date();
+			                let hours = now.getHours();
+			                let minutes = now.getMinutes();
+			                let seconds = now.getSeconds();
+			                let ampm = hours >= 12 ? "PM" : "AM";
 
-                hours = hours % 12 === 0 ? 12 : hours % 12;
+			                hours = hours % 12 === 0 ? 12 : hours % 12;
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+			                minutes = minutes < 10 ? "0" + minutes : minutes;
+			                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                return `${hours}_${minutes}_${seconds} ${ampm}`;
-            }
+			                return `${hours}_${minutes}_${seconds} ${ampm}`;
+			            }
 
-            function clearSignature() {
-                signaturePad.clear();
-            }
+			            function clearSignature() {
+			                signaturePad.clear();
+			            }
 
-            function downloadSignature() {
-                let signatureDataURL = signaturePad.toDataURL();
-                let a = document.createElement("a");
-                a.href = signatureDataURL;
-                a.download = "signature.png";
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
+			            function downloadSignature() {
+			                let signatureDataURL = signaturePad.toDataURL();
+			                let a = document.createElement("a");
+			                a.href = signatureDataURL;
+			                a.download = "signature.png";
+			                document.body.appendChild(a);
+			                a.click();
+			                document.body.removeChild(a);
+			            }
 
-            function returnToHome() {
-                window.location.href = "/";
-            }
-        </script>
+			            function returnToHome() {
+			                window.location.href = "/";
+			            }
+		</script>
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="signature_pad.js"></script>
-        <script type="text/javascript">
-            var signaturePad;
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="signature_pad.js"></script>
+		<script type="text/javascript">
+			var signaturePad;
 
-            // Initialize signaturePad after the page is fully loaded
-            window.addEventListener("DOMContentLoaded", function () {
-                var wrapper = document.getElementById("signature-pad");
-                var canvas = wrapper.querySelector("canvas");
+			// Initialize signaturePad after the page is fully loaded
+			window.addEventListener("DOMContentLoaded", function () {
+			    var wrapper = document.getElementById("signature-pad");
+			    var canvas = wrapper.querySelector("canvas");
 
-                signaturePad = new SignaturePad(canvas);
-                signaturePad.minWidth = 1;
-                signaturePad.maxWidth = 1;
-                signaturePad.penColor = "#21409A";
-            });
-        </script>
-    </body>
+			    signaturePad = new SignaturePad(canvas);
+			    signaturePad.minWidth = 1;
+			    signaturePad.maxWidth = 1;
+			    signaturePad.penColor = "#21409A";
+			});
+		</script>
+	</body>
 </html>
