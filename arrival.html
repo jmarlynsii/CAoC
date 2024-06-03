@@ -144,67 +144,39 @@
         let name = document.getElementById('name').value;
         let comment = document.getElementById('email').value;
 
-let canvas = document.getElementById('signature-canvas');
-let signatureDataURL = canvas.toDataURL('image/png');
+        let canvas = document.getElementById('signature-canvas');
+        let signatureDataURL = canvas.toDataURL('image/png');
 
-let butterflyImage = document.getElementById('butterfly-image'); // Getting the butterfly image by its ID
+        let signatureImage = new Image();
+        signatureImage.src = signatureDataURL;
 
-let signatureImage = new Image();
-signatureImage.src = signatureDataURL;
+        signatureImage.onload = function () {
+            let currentDate = getCurrentDate();
+            let currentTime = getCurrentTime();
 
-signatureImage.onload = function () {
+            let element = document.createElement('div');
+            element.style.backgroundColor = "#f0f0f0";
+            element.innerHTML = `
+                <div>
+                    <h1>Student Arrival Form</h1>
+                </div>
+                <div>
+                    <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
+                    <p><strong>Child/ren Name:</strong> ${name}</p>
+                    <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
+                    <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
+                </div>`;
+            element.appendChild(signatureImage);
+            element.appendChild(document.createElement('hr'));
 
-            // Create a container div for the color divs
-            let colorsContainer = document.createElement('div');
-            colorsContainer.style.display = 'flex'; // Set display to flex
-            colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
-            colorsContainer.style.justifyContent = 'center'; // Center items horizontally
-            colorsContainer.style.alignItems = 'center'; // Center items vertically
-            colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
+        let authorizationParagraph = document.createElement('p');
+        authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
+            "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
+            "I understand that care was provided by an appropriately trained tutor. " +
+            "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
 
+            element.appendChild(authorizationParagraph);
 
-    let currentDate = getCurrentDate();
-    let currentTime = getCurrentTime();
-
-    let element = document.createElement('div');
-    element.style.backgroundColor = "#f0f0f0";
-    element.innerHTML = `
-        <div>
-            <h1>Student Arrival Form</h1>
-        </div>
-        <div>
-            <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
-            <p><strong>Child/ren Name:</strong> ${name}</p>
-            <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
-            <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
-        </div>`;
-    element.appendChild(signatureImage);
-    element.appendChild(document.createElement('hr'));
-
-    // Create a new paragraph element with authorization text and style
-    let authorizationParagraph = document.createElement('p');
-    authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-        "I understand that care was provided by an appropriately trained tutor. " +
-        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-
-    // Append the authorization paragraph
-    element.appendChild(authorizationParagraph);
-
-    // Append the colors container to the main element
-    element.appendChild(colorsContainer);
-
-// Loop through colors and create color divs
-let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE'];
-colors.forEach(color => {
-let colorDiv = document.createElement('div');
-colorDiv.style.backgroundColor = color;
-colorDiv.style.height = '25px'; // Set height
-colorDiv.style.width = '25px'; // Set width
-colorDiv.style.borderRadius = '50%'; // Make the div circular
-colorDiv.style.margin = '0 10px 30px 0'; // Set margin
-colorsContainer.appendChild(colorDiv); // Append color div to colors container
-});
 
 let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
 
@@ -230,8 +202,6 @@ let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
 
         return `${month}-${day}-${year}`;
     }
-
-
 
 
 function getCurrentTimePDF() {
