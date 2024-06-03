@@ -281,35 +281,20 @@ signatureImage.onload = function () {
 
     let element = document.createElement('div');
     element.style.backgroundColor = "#f0f0f0";
-    element.style.border = "1px solid #000";
-    element.style.overflow = "auto";
-    element.style.padding = "20px"; // Add padding inside the element
-    element.style.boxSizing = 'border-box'; // Include padding and border in the element's total width and height
-    element.style.margin = "0 auto"; // Center the element
-    element.style.width = "100%"; // Set width to 100%
-
-    // Ensure the content starts at the top
-    element.style.position = "relative";
-    element.style.top = "0";
-
+    
     element.innerHTML = `
-        <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="margin-top: 50px; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Arrival Form</h1>
+        <div>
+            <h1>Student Arrival Form</h1>
         </div>
-        <div style="margin-bottom: 20px;">
-            <p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;">
-                <strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}
-            </p>
-            <p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;">
-                <strong>Child/ren Name:</strong> ${name}
-            </p>
-            <p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;">
-                <strong>Child/ren Parent/Guardian Email:</strong> ${comment}
-            </p>
-            <p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;">
-                <strong>Child/ren Parent/Guardian Signature:</strong>
-            </p>
+        <div>
+            <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
+            <p><strong>Child/ren Name:</strong> ${name}</p>
+            <p><strong>Child/ren Parent/Guardian Email:</strong> ${email}</p>
+            <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
         </div>`;
+    element.appendChild(signatureImage);
+    element.appendChild(document.createElement('hr'));
+
 
     element.appendChild(signatureImage);
     element.appendChild(document.createElement('hr'));
@@ -320,7 +305,6 @@ signatureImage.onload = function () {
         "I authorize Collegiate Academy of Carolina to render appropriate  services to the above named Learner. " +
         "I understand that care will be provided by an appropriately trained tutor. " +
         "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified. (Approved 05/2024)";
-    authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
 
     // Append the authorization paragraph
     element.appendChild(authorizationParagraph);
