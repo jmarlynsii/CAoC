@@ -119,7 +119,7 @@
                     filename: `${message} Arrival Form ${currentDate}.pdf`
                 };
 
-                fetch('/.netlify/functions/testB', {
+                fetch('/.netlify/functions/testC', {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
@@ -130,7 +130,7 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    alert('Dismissal Form submitted successfully!');
+                    alert('Arrival Form submitted successfully!');
                     document.getElementById('contactForm').reset(); 
                     clearSignature();
                     returnToHome();
@@ -170,7 +170,7 @@ signatureImage.onload = function () {
     element.style.backgroundColor = "#f0f0f0";
     element.style.border = "1px solid #000"; // Add border style
     element.style.overflow = "auto"; // Allow overflow
-    element.style.width = "100%"; // Set width to 100%
+    element.style.padding = "20px"; // Add padding
 
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
