@@ -41,9 +41,10 @@
             }
 
             .design-form-header h1 {
-                font-family: Arial, sans-serif;
+                font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
                 font-weight: bold;
                 margin: 0;
+                padding-bottom: 5px;
             }
 
             /* Content styles */
@@ -78,14 +79,14 @@
                                     <div class="row">
                                         <div class="col-md-10 form-group">
                                             <label for="email">Child/ren Name:</label>
-                                            <input type="text" class="form-control" name="name" id="name" />
+                                            <input type="text" class="form-control" name="name" id="name" required/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-10 form-group">
                                             <label for="email">Child/ren Guardian Email:</label>
-                                            <input type="email" class="form-control" name="email" id="email" />
+                                            <input type="email" class="form-control" name="email" id="email" required/>
                                         </div>
                                     </div>
 
@@ -108,7 +109,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="submit" value="Submit" onclick="getContentInPDF();" class="btn btn-primary rounded-0 py-2 px-4" />
+                                            <input type="submit" value="Submit" class="btn btn-primary rounded-0 py-2 px-4" />
                                             <span class="submitting"></span>
                                         </div>
                                     </div>
@@ -137,10 +138,24 @@
         <script src="js/signature_pad.umd.min.js"></script>
         <script src="js/app.js"></script>
         <script>
-            document.getElementById("contactForm").addEventListener("submit", function (event) {
-                event.preventDefault();
+            function isCanvasBlank(canvas) {
+                const blank = document.createElement('canvas');
+                blank.width = canvas.width;
+                blank.height = canvas.height;
+                return canvas.toDataURL() === blank.toDataURL();
+            }
+
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+            const canvas = document.getElementById('signature-canvas');
+            if (isCanvasBlank(canvas)) {
+                alert("Parent/Guardian Signature is required!");
+                event.preventDefault(); 
+            } else {
+                event.preventDefault(); 
                 contactForm();
-            });
+            }
+        });
+
 
             function contactForm() {
                 var formData = new FormData(document.getElementById("contactForm"));
