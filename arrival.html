@@ -21,7 +21,7 @@
     <!-- Required Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <title>Contact Form #1</title>
+    <title>Child/ren Arrival Form</title>
 </head>
 <body>
 <div class="content">
@@ -30,7 +30,7 @@
             <div class="col-md-10">
                 <div class="row align-items-center">
                     <div class="col-lg-7 mb-5 mb-lg-0">
-                        <h2 class="mb-5">Student Dismissal Form.</h2>
+                        <h2 class="mb-5">Student Arrival Form.</h2>
 
                         <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
                            
@@ -80,7 +80,9 @@
                     </div>
                     <div class="col-lg-4 ml-auto">
                         <h3 class="mb-4">Collegiate Academy of Carolina.</h3>
-                        <p>Submitting this form hold you solely responsible for for the student you are signing out.</p>
+                        <p>I hereby inform Collegiate Academy of Carolina that l am authorizing CAofC to provide tutoring services to the above named child/ren at this time.</p> 
+
+                        <p>I authorize Collegiate Academy of Carolina to render appropriate  services to the above named Learner. I understand that care will be provided by an appropriately trained tutor. I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified. (Approved 05/2024)</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +116,7 @@
                     message: message,
                     email: email,
                     attachment: base64File,
-                    filename: `${message} Dismissal Form ${currentDate}.pdf`
+                    filename: `${message} Arrival Form ${currentDate}.pdf`
                 };
 
                 fetch('/.netlify/functions/testB', {
@@ -131,6 +133,7 @@
                     alert('Dismissal Form submitted successfully!');
                     document.getElementById('contactForm').reset(); 
                     clearSignature();
+                    returnToHome();
                 })
                 .catch(error => alert('There was a problem submitting the form:', error));
             };
@@ -171,7 +174,7 @@ signatureImage.onload = function () {
 
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
-    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
+    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Arrival Form</h1>' +
     '</div>' +
     '<div style="margin-bottom: 20px;">' +
     '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
@@ -209,7 +212,7 @@ colorDiv.style.margin = '0 10px 30px 0'; // Set margin
 colorsContainer.appendChild(colorDiv); // Append color div to colors container
 });
 
-let filename = `${name} Dismissal Form ${currentDate} ${currentTime}.pdf`;
+let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
 
         html2pdf()
             .from(element)
@@ -268,7 +271,7 @@ signatureImage.onload = function () {
     element.style.width = "100%"; // Set width to 100%
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
-    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
+    '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Arrival Form</h1>' +
     '</div>' +
     '<div style="margin-bottom: 20px;">' +
     '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
@@ -282,10 +285,10 @@ signatureImage.onload = function () {
 
     // Create a new paragraph element with authorization text and style
     let authorizationParagraph = document.createElement('p');
-    authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-        "I understand that care was provided by an appropriately trained tutor. " +
-        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
+    authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that l am authorizing CAofC to provide tutoring services to the above named child/ren at this time.\n" +
+        "I authorize Collegiate Academy of Carolina to render appropriate  services to the above named Learner. " +
+        "I understand that care will be provided by an appropriately trained tutor. " +
+        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified. (Approved 05/2024)";
     authorizationParagraph.style.margin = "0 20px 40px"; // Set margin
 
     // Append the authorization paragraph
@@ -308,7 +311,7 @@ colorsContainer.appendChild(colorDiv); // Append color div to colors container
 
     
     // Generate PDF from the element and save
-    html2pdf().from(element).set({ filename: name + ' Dismissal Form ' + currentDate + ' ' + currentTime + '.pdf' }).save();
+    html2pdf().from(element).set({ filename: name + ' Arrival Form ' + currentDate + ' ' + currentTime + '.pdf' }).save();
 };
 }
 
@@ -357,6 +360,11 @@ function getCurrentTimePDF() {
         a.click();
         document.body.removeChild(a);
     }
+
+    function returnToHome() {
+    window.location.href = "/";
+    }
+
 </script>
 
 <script src="js/jquery-3.3.1.min.js"></script>
