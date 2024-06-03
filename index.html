@@ -128,7 +128,7 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    alert('Form submitted successfully!');
+                    alert('Dismissal Form submitted successfully!');
                     document.getElementById('contactForm').reset(); 
                     clearSignature();
                 })
@@ -167,6 +167,8 @@ signatureImage.onload = function () {
     element.style.backgroundColor = "#f0f0f0";
     element.style.border = "1px solid #000"; // Add border style
     element.style.overflow = "auto"; // Allow overflow
+    element.style.width = "100%"; // Set width to 100%
+
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
     '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
@@ -263,6 +265,7 @@ signatureImage.onload = function () {
     element.style.backgroundColor = "#f0f0f0";
     element.style.border = "1px solid #000"; // Add border style
     element.style.overflow = "auto"; // Allow overflow
+    element.style.width = "100%"; // Set width to 100%
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
     '<h1 style="margin-top: 50px;; font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #112D8D;">Student Dismissal Form</h1>' +
