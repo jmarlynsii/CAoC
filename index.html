@@ -96,13 +96,13 @@
 <script src="js/signature_pad.umd.min.js"></script>
 <script src="js/app.js"></script>
 <script>
-    document.getElementById('submitForm').addEventListener('submit', function (event) {
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
         event.preventDefault(); 
-        submitForm(); 
+        contactForm(); 
     });
 
-    function submitForm() {
-        var formData = new FormData(document.getElementById('submitForm'));
+    function contactForm() {
+        var formData = new FormData(document.getElementById('contactForm'));
         var message = formData.get('name');
         var email = formData.get('email');
 
@@ -134,7 +134,7 @@
                         throw new Error('Network response was not ok');
                     }
                     alert('Form submitted successfully!');
-                    document.getElementById('submitForm').reset(); 
+                    document.getElementById('contactForm').reset(); 
                     clearSignature();
                 })
                 .catch(error => alert('There was a problem submitting the form:', error));
