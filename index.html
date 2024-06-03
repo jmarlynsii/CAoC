@@ -37,22 +37,22 @@
                             <div class="row">
                                 <div class="col-md-10 form-group">
                                     <label for="email">Child/ren Name:</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Child/ren Name..." />
+                                    <input type="text" class="form-control" name="name" id="name" />
                                 </div>
                             </div>
 
             
                             <div class="row">
                                 <div class="col-md-10 form-group">
-                                    <label for="email">Child/ren Guardian's Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Child/ren Guardian Email..." />
+                                    <label for="email">Child/ren Guardian Email:</label>
+                                    <input type="email" class="form-control" name="email" id="email" />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <!-- Add signature pad here-->
                                 <div class="w3-container">
-                                    <label for="signature">Signature:</label>
+                                    <label for="signature"> Guardian Signature:</label>
                                     <br />
                                     <div id="signature-pad" class="m-signature-pad w3-dashed">
                                         <div class="m-signature-pad--body">
@@ -166,7 +166,6 @@ signatureImage.onload = function () {
     let element = document.createElement('div');
     element.style.backgroundColor = "#f0f0f0";
     element.style.border = "1px solid #000"; // Add border style
-    element.style.padding = "10px"; // Add padding
     element.style.overflow = "auto"; // Allow overflow
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
@@ -263,7 +262,6 @@ signatureImage.onload = function () {
     let element = document.createElement('div');
     element.style.backgroundColor = "#f0f0f0";
     element.style.border = "1px solid #000"; // Add border style
-    element.style.padding = "10px"; // Add padding
     element.style.overflow = "auto"; // Allow overflow
 
     element.innerHTML = '<div style="text-align: center; margin-bottom: 20px;">' +
