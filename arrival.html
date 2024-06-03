@@ -156,11 +156,10 @@
 
             let element = document.createElement('div');
             element.style.backgroundColor = "#f0f0f0";
+            element.style.overflow = "auto"; // Allow overflow
             element.innerHTML = `
                 <div>
                     <h1>Student Arrival Form</h1>
-                </div>
-                <div>
                     <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
                     <p><strong>Child/ren Name:</strong> ${name}</p>
                     <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
