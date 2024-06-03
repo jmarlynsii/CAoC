@@ -40,7 +40,7 @@
             }
 
             .design-form-header h1 {
-                font-family: Arial, sans-serif;
+                font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
                 font-weight: bold;
                 margin: 0;
             }
@@ -144,15 +144,16 @@
             }
 
             document.getElementById("contactForm").addEventListener("submit", function(event) {
-                const canvas = document.getElementById('signature-canvas');
-                if (isCanvasBlank(canvas)) {
-                    alert("Parent/Guardian Signature is required!");
-                    return;
-                } else {
-                    event.preventDefault();
-                    contactForm();
-                }
-            });
+            const canvas = document.getElementById('signature-canvas');
+            if (isCanvasBlank(canvas)) {
+                alert("Parent/Guardian Signature is required!");
+                event.preventDefault(); // Ensure default submission is prevented
+            } else {
+                event.preventDefault(); // Prevent default form submission
+                contactForm(); // Handle custom form submission
+            }
+        });
+
 
 
             function contactForm() {
@@ -198,79 +199,78 @@
             }
 
             function getContentInPDF(formData, callback) {
-                let name = document.getElementById("name").value;
-                let comment = document.getElementById("email").value;
+    let name = document.getElementById("name").value;
+    let comment = document.getElementById("email").value;
 
-                let canvas = document.getElementById("signature-canvas");
-                let signatureDataURL = canvas.toDataURL("image/png");
+    let canvas = document.getElementById("signature-canvas");
+    let signatureDataURL = canvas.toDataURL("image/png");
 
-                let colorsContainer = document.createElement("div");
-                colorsContainer.style.display = "flex"; // Set display to flex
-                colorsContainer.style.flexWrap = "wrap"; // Wrap flex items
-                colorsContainer.style.justifyContent = "center"; // Center items horizontally
-                colorsContainer.style.alignItems = "center"; // Center items vertically
-                colorsContainer.style.marginBottom = "10px"; // Add some spacing between divs
+    let colorsContainer = document.createElement("div");
+    colorsContainer.style.display = "flex";
+    colorsContainer.style.flexWrap = "wrap";
+    colorsContainer.style.justifyContent = "center";
+    colorsContainer.style.alignItems = "center";
+    colorsContainer.style.marginBottom = "10px";
 
-                let signatureImage = new Image();
-                signatureImage.src = signatureDataURL;
+    let signatureImage = new Image();
+    signatureImage.src = signatureDataURL;
 
-                signatureImage.onload = function () {
-                    let currentDate = getCurrentDate();
-                    let currentTime = getCurrentTime();
+    signatureImage.onload = function () {
+        let currentDate = getCurrentDate();
+        let currentTime = getCurrentTime();
 
-                    let element = document.createElement("div");
-                    element.classList.add("design-form-container"); // Adding CSS class
-                    element.innerHTML = `
-                <div class="design-form-header">
-                    <h1>Student Arrival Form</h1>
-                </div>
-                <div class="design-form-content">
-                    <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
-                    <p><strong>Child/ren Name:</strong> ${name}</p>
-                    <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
-                    <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
-                </div>`;
-                    element.appendChild(signatureImage);
-                    element.appendChild(document.createElement("hr"));
+        let element = document.createElement("div");
+        element.classList.add("design-form-container");
+        element.innerHTML = `
+            <div class="design-form-header">
+                <h1>Student Arrival Form</h1>
+            </div>
+            <div class="design-form-content">
+                <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
+                <p><strong>Child/ren Name:</strong> ${name}</p>
+                <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
+                <p><strong>Child/ren Parent/Guardian Signature:</strong></p>
+            </div>`;
+        element.appendChild(signatureImage);
+        element.appendChild(document.createElement("hr"));
 
-                    let authorizationParagraph = document.createElement("p");
-                    authorizationParagraph.textContent =
-                        "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-                        "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-                        "I understand that care was provided by an appropriately trained tutor. " +
-                        "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-                    authorizationParagraph.classList.add("design-authorization-paragraph"); // Adding CSS class
-                    element.appendChild(authorizationParagraph);
+        let authorizationParagraph = document.createElement("p");
+        authorizationParagraph.textContent =
+            "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
+            "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
+            "I understand that care was provided by an appropriately trained tutor. " +
+            "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
+        authorizationParagraph.classList.add("design-authorization-paragraph");
+        element.appendChild(authorizationParagraph);
 
-                    document.body.appendChild(element);
+        document.body.appendChild(element);
 
-                    // Append the colors container to the main element
-                    element.appendChild(colorsContainer);
+        element.appendChild(colorsContainer);
 
-                    // Loop through colors and create color divs
-                    let colors = ["#ED1C24", "#21409A", "#FFDE17", "#FFFFFF", "#000000", "#FABCAE"];
-                    colors.forEach((color) => {
-                        let colorDiv = document.createElement("div");
-                        colorDiv.style.backgroundColor = color;
-                        colorDiv.style.height = "25px"; // Set height
-                        colorDiv.style.width = "25px"; // Set width
-                        colorDiv.style.borderRadius = "50%"; // Make the div circular
-                        colorDiv.style.margin = "0 10px 30px 0"; // Set margin
-                        colorsContainer.appendChild(colorDiv); // Append color div to colors container
-                    });
+        let colors = ["#ED1C24", "#21409A", "#FFDE17", "#FFFFFF", "#000000", "#FABCAE"];
+        colors.forEach((color) => {
+            let colorDiv = document.createElement("div");
+            colorDiv.style.backgroundColor = color;
+            colorDiv.style.height = "25px";
+            colorDiv.style.width = "25px";
+            colorDiv.style.borderRadius = "50%";
+            colorDiv.style.margin = "0 10px 30px 0";
+            colorsContainer.appendChild(colorDiv);
+        });
 
-                    let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
+        let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
 
-                    html2pdf()
-                        .from(element)
-                        .set({ filename: filename })
-                        .toPdf()
-                        .get("pdf")
-                        .then((pdf) => {
-                            callback(new Blob([pdf.output("blob")], { type: "application/pdf" }));
-                        });
-                };
-            }
+        html2pdf()
+            .from(element)
+            .set({ filename: filename })
+            .toPdf()
+            .get("pdf")
+            .then((pdf) => {
+                callback(new Blob([pdf.output("blob")], { type: "application/pdf" }));
+                document.body.removeChild(element); // Remove the element from the DOM
+            });
+    };
+}
 
             function getCurrentDate() {
                 let now = new Date();
