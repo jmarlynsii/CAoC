@@ -35,17 +35,17 @@
                         <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
                            
                             <div class="row">
-                                <div class="col-md-12 form-group">
+                                <div class="col-md-8 form-group">
                                     <label for="email">Child/ren Name:</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter child/ren name..." />
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Child/ren Name..." />
                                 </div>
                             </div>
 
             
                             <div class="row">
-                                <div class="col-md-12 form-group">
+                                <div class="col-md-8 form-group">
                                     <label for="email">Child/ren Guardian's Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter child/ren guardian email..." />
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Child/ren Guardian Email..." />
                                 </div>
                             </div>
 
@@ -64,11 +64,6 @@
                                     <button type="button" class="w3-btn w3-black" onclick="clearSignature()">Clear</button>
                                 </div>
                             </div>
-
-                                <!-- Hidden input field to include sender email -->
-                                <input type="hidden" id="senderEmail" name="senderEmail" value="your_email@example.com">
-                                <!-- Hidden input field to include sender name -->
-                                <input type="hidden" id="senderName" name="senderName" value="Your Name">
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -179,8 +174,9 @@ signatureImage.onload = function () {
     '</div>' +
     '<div style="margin-bottom: 20px;">' +
     '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Student Name:</strong> ' + name + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Parent/Guardian Signature:</strong></p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Name:</strong> ' + name + '</p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Email:</strong> ' + comment + '</p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Signature:</strong></p>' +
     '</div>';
 
     element.appendChild(signatureImage);
@@ -275,8 +271,9 @@ signatureImage.onload = function () {
     '</div>' +
     '<div style="margin-bottom: 20px;">' +
     '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>SUBMISSION STAMP:</strong> ' + getCurrentDate() + ' @ ' + getCurrentTimePDF() + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Student Name:</strong> ' + name + '</p>' +
-    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Parent/Guardian Signature:</strong></p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Name:</strong> ' + name + '</p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Email:</strong> ' + comment + '</p>' +
+    '<p style="margin-left: 20px; margin-bottom: 15px; font-size: 20px; font-family: Arial, sans-serif;"><strong>Child/ren Parent/Guardian Signature:</strong></p>' +
     '</div>';
 
     element.appendChild(signatureImage);
