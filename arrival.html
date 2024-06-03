@@ -22,6 +22,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <title>CAofC | Arrival Form</title>
+    <style>
+        .design-form-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.design-form-header {
+    text-align: center;
+}
+
+.design-form-header h1 {
+    margin: 0;
+}
+
+.design-form-content p {
+    margin: 10px 0;
+}
+
+.design-authorization-paragraph {
+    margin-top: 20px;
+}
+
+    </style>
 </head>
 <body>
 <div class="content">
@@ -155,11 +181,12 @@
             let currentTime = getCurrentTime();
 
             let element = document.createElement('div');
-            element.style.backgroundColor = "#f0f0f0";
-            element.style.overflow = "auto"; // Allow overflow
+            element.classList.add('design-form-container'); // Adding CSS class
             element.innerHTML = `
-                <div>
+                <div class="design-form-header">
                     <h1>Student Arrival Form</h1>
+                </div>
+                <div class="design-form-content">
                     <p><strong>SUBMISSION STAMP:</strong> ${getCurrentDate()} @ ${getCurrentTimePDF()}</p>
                     <p><strong>Child/ren Name:</strong> ${name}</p>
                     <p><strong>Child/ren Parent/Guardian Email:</strong> ${comment}</p>
@@ -168,13 +195,16 @@
             element.appendChild(signatureImage);
             element.appendChild(document.createElement('hr'));
 
-        let authorizationParagraph = document.createElement('p');
-        authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
-            "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
-            "I understand that care was provided by an appropriately trained tutor. " +
-            "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
-
+            let authorizationParagraph = document.createElement('p');
+            authorizationParagraph.textContent = "I hereby inform Collegiate Academy of Carolina that I am authorized to pick up the above named child/ren at this time.\n" +
+                "I confirm that Collegiate Academy of Carolina has provided appropriate services to the above named Learner. " +
+                "I understand that care was provided by an appropriately trained tutor. " +
+                "I hereby authorize Collegiate Academy to bill me via Square Invoices or any other payment method identified for services rendered today. (Approved 05/2024)";
+            authorizationParagraph.classList.add('design-authorization-paragraph'); // Adding CSS class
             element.appendChild(authorizationParagraph);
+
+            document.body.appendChild(element);
+
 
 
 let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
