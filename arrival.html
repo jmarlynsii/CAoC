@@ -189,6 +189,13 @@
         let canvas = document.getElementById('signature-canvas');
         let signatureDataURL = canvas.toDataURL('image/png');
 
+            let colorsContainer = document.createElement('div');
+            colorsContainer.style.display = 'flex'; // Set display to flex
+            colorsContainer.style.flexWrap = 'wrap'; // Wrap flex items
+            colorsContainer.style.justifyContent = 'center'; // Center items horizontally
+            colorsContainer.style.alignItems = 'center'; // Center items vertically
+            colorsContainer.style.marginBottom = '10px'; // Add some spacing between divs
+
         let signatureImage = new Image();
         signatureImage.src = signatureDataURL;
 
@@ -221,6 +228,20 @@
 
             document.body.appendChild(element);
 
+                    // Append the colors container to the main element
+            element.appendChild(colorsContainer);
+
+        // Loop through colors and create color divs
+        let colors = ['#ED1C24', '#21409A', '#FFDE17', '#FFFFFF', '#000000', '#FABCAE'];
+        colors.forEach(color => {
+        let colorDiv = document.createElement('div');
+        colorDiv.style.backgroundColor = color;
+        colorDiv.style.height = '25px'; // Set height
+        colorDiv.style.width = '25px'; // Set width
+        colorDiv.style.borderRadius = '50%'; // Make the div circular
+        colorDiv.style.margin = '0 10px 30px 0'; // Set margin
+        colorsContainer.appendChild(colorDiv); // Append color div to colors container
+        });
 
 
 let filename = `${name} Arrival Form ${currentDate} ${currentTime}.pdf`;
